@@ -12,8 +12,8 @@ public class Friday {
         introduction(); //Friday's greetings
 
         while (true) {
-            Task task = new Task(in.nextLine()); //new task
-            String action = task.description.split(" ")[0];
+            String input = in.nextLine(); //new task
+            String action = input.split(" ")[0];
 
             if (action.compareTo("bye") == 0) {
                 goodbye(); //goodbye message
@@ -21,27 +21,36 @@ public class Friday {
             } else if (action.compareTo("list") == 0) {
                 returnList();
             } else if (action.compareTo("unmark") == 0) {
-                int index = Integer.parseInt(task.description.split(" ")[1]) -1;
+                int index = Integer.parseInt(input.split(" ")[1]) -1;
                 unmark(index);
             } else if (action.compareTo("mark") == 0) {
-                int index = Integer.parseInt(task.description.split(" ")[1]) -1;
+                int index = Integer.parseInt(input.split(" ")[1]) -1;
                 mark(index);
-            } else {
-               addToList(task);
+            } else if (action.compareTo("todo") == 0) {
+                String[] texts = input.split(" ", 2);
+                addToList(new Todo(texts[1]));
+            } else if (action.compareTo("deadline") == 0) {
+                String[] texts = input.split(" ", 2);
+                String[] dates = texts[1].split("/by", 2);
+                addToList(new Deadline(dates[0], dates[1]));
+            } else if (action.compareTo("event") == 0) {
+                String[] texts = input.split(" ", 2);
+                String[] activity = texts[1].split("/from", 2);
+                String[] period = activity[1].split("/to", 2);
+                addToList(new Event(activity[0], period[0], period[1]));
             }
         }
         out.close();
     }
+    static String returnMessage(String message) {
+        return ("____________________________________\n" + message + "\n____________________________________\n");
+    }
+
     static void introduction() {
-        System.out.println(
-                "____________________________________\n" + "Hello ! I'm Friday\n" + "What can I do for you?\n" +
-                        "____________________________________\n"
-        );
+        System.out.print(returnMessage("Hello ! I'm Friday\n" + "What can I do for you?"));
     }
     static void goodbye() {
-        System.out.println("____________________________________\n" + "Bye. Hope to see you again soon!" +
-                                    "\n____________________________________\n"
-        );
+        System.out.println(returnMessage("Bye. Hope to see you again soon!"));
     }
     static void returnList() {
         int counter = 1;
@@ -53,23 +62,21 @@ public class Friday {
         System.out.println("____________________________________\n");
     }
     static void addToList(Task task) {
-        System.out.println("____________________________________\n" + "added: " + task.description +
-                                    "\n____________________________________\n");
         allTasks.add(task);
+        System.out.println(returnMessage("Got it. I've added this task:\n" + task.toString() + "\n" + taskcounter()));
+    }
+    static String taskcounter() {
+        return ("Now you have " + allTasks.size() + " tasks in the list.");
     }
     static void unmark(int index) {
         Task task = (Task) allTasks.get(index);
         task.isDone = false;
-        System.out.println("\n____________________________________\n");
-        System.out.println("OK, I've marked this task as not done yet:\n" + task.toString());
-        System.out.println("\n____________________________________\n");
+        System.out.println(returnMessage("OK, I've marked this task as not done yet:\n" + task.toString()));
     }
     static void mark(int index) {
         Task task = (Task) allTasks.get(index);
         task.isDone = true;
-        System.out.println("\n____________________________________\n");
-        System.out.println("Nice! I've marked this task as done:\n" + task.toString());
-        System.out.println("\n____________________________________\n");
+        System.out.println(returnMessage("Nice! I've marked this task as done:\n" + task.toString()));
     }
 
     public static class Task {
@@ -84,10 +91,48 @@ public class Friday {
         public String getStatusIcon() {
             return (isDone ? "X" : " "); // mark done task with X
         }
-
         @Override
         public String toString() {
             return "[" + this.getStatusIcon() + "] " + this.description;
+        }
+    }
+
+    public static class Todo extends Task {
+        public Todo(String description) {
+            super(description);
+        }
+
+        @Override
+        public String toString() {
+            return ("[T]" + super.toString());
+        }
+    }
+
+    public static class Deadline extends Task {
+        protected String by;
+        public Deadline(String description, String by) {
+            super(description);
+            this.by = by;
+        }
+
+        @Override
+        public String toString() {
+            return ("[D]" + super.toString() + " (by:" + by + ")");
+        }
+    }
+
+    public static class Event extends Task {
+        protected String from;
+        protected String to;
+        public Event(String description, String from, String to) {
+            super(description);
+            this.from = from;
+            this.to = to;
+        }
+
+        @Override
+        public String toString() {
+            return ("[E]" + super.toString() + " (from:" + from + "to:" + to + ")");
         }
     }
 }
