@@ -59,11 +59,11 @@ public class Friday {
             System.out.println(counter + "." + allTasks.get(i).toString());
             counter++;
         }
-        System.out.println("____________________________________\n");
+        System.out.println("____________________________________");
     }
     static void addToList(Task task) {
         allTasks.add(task);
-        System.out.println(returnMessage("Got it. I've added this task:\n" + task.toString() + "\n" + taskcounter()));
+        System.out.print(returnMessage("Got it. I've added this task:\n" + task.toString() + "\n" + taskcounter()));
     }
     static String taskcounter() {
         return ("Now you have " + allTasks.size() + " tasks in the list.");
@@ -71,12 +71,12 @@ public class Friday {
     static void unmark(int index) {
         Task task = (Task) allTasks.get(index);
         task.isDone = false;
-        System.out.println(returnMessage("OK, I've marked this task as not done yet:\n" + task.toString()));
+        System.out.print(returnMessage("OK, I've marked this task as not done yet:\n" + task.toString()));
     }
     static void mark(int index) {
         Task task = (Task) allTasks.get(index);
         task.isDone = true;
-        System.out.println(returnMessage("Nice! I've marked this task as done:\n" + task.toString()));
+        System.out.print(returnMessage("Nice! I've marked this task as done:\n" + task.toString()));
     }
 
     public static class Task {
