@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Friday {
     static ArrayList allTasks = new ArrayList<Task>(); //list of text inputs
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DukeException {
         Scanner in = new Scanner(System.in);
         PrintWriter out = new PrintWriter(System.out);
 
@@ -18,7 +18,15 @@ public class Friday {
             if (action.compareTo("bye") == 0) {
                 goodbye(); //goodbye message
                 break;
-            } else if (action.compareTo("list") == 0) {
+            } try {
+                checkInput(input);
+            } catch(DukeException e) {
+                System.out.println(returnMessage("Unknown action. Please input a Todo/Deadline/Event action"));
+            } catch(ArrayIndexOutOfBoundsException e) {
+                System.out.println(returnMessage("Please provide more details for the " + input.split(" ")[0] + " action."));
+                continue;
+            }
+            if (action.compareTo("list") == 0) {
                 returnList();
             } else if (action.compareTo("unmark") == 0) {
                 int index = Integer.parseInt(input.split(" ")[1]) -1;
@@ -133,6 +141,24 @@ public class Friday {
         @Override
         public String toString() {
             return ("[E]" + super.toString() + " (from:" + from + "to:" + to + ")");
+        }
+    }
+
+    public static class DukeException extends Exception {
+        public DukeException() {
+            super();
+        }
+    }
+
+    public static void checkInput(String input) throws DukeException {
+        if(input.split(" ").length <= 1) {
+            String action = input.split(" ")[0];
+            if(action.equals("todo") || action.equals("deadline") || action.equals("event")) {
+                throw new ArrayIndexOutOfBoundsException();
+            } else {
+                throw new DukeException();
+            }
+
         }
     }
 }
