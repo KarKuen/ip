@@ -54,6 +54,9 @@ public class Friday {
                 String[] activity = texts[1].split("/from", 2);
                 String[] period = activity[1].split("/to", 2);
                 addToList(new Event(activity[0], period[0], period[1]));
+            } else if (action.compareTo("delete") == 0) {
+                int index = Integer.parseInt(input.split(" ")[1]) -1;
+                delete(index);
             }
         }
         out.close();
@@ -93,6 +96,12 @@ public class Friday {
         Task task = (Task) allTasks.get(index);
         task.isDone = true;
         System.out.print(returnMessage("Nice! I've marked this task as done:\n" + task.toString()));
+    }
+    static void delete(int index) {
+        Task task = (Task) allTasks.get(index);
+        allTasks.remove(index);
+        System.out.print(returnMessage("Noted. I've removed this task:\n" +
+                task.toString() + "\n" + taskcounter()));
     }
 
     public static class Task {
