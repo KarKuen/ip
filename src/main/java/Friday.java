@@ -1,9 +1,17 @@
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Friday {
-    static ArrayList allTasks = new ArrayList<Task>(); //list of text inputs
+    static ArrayList allTasks = new ArrayList<Task>();
+    //list of text inputs
+    static List<String> availableActions =
+            Arrays.asList("list", "mark", "unmark", "bye", "todo", "deadline", "event");
+    static List<String> actionsWithDescription =
+            Arrays.asList("mark", "unmark", "todo", "deadline", "event");
+
 
     public static void main(String[] args) throws DukeException {
         Scanner in = new Scanner(System.in);
@@ -153,10 +161,15 @@ public class Friday {
     public static void checkInput(String input) throws DukeException {
         if(input.split(" ").length <= 1) {
             String action = input.split(" ")[0];
-            if(action.equals("todo") || action.equals("deadline") || action.equals("event")) {
-                throw new ArrayIndexOutOfBoundsException();
-            } else {
+            if(!availableActions.contains(action)) {
                 throw new DukeException();
+            } else {
+                //check if there exist a description
+                if ((input.split(" ").length <= 1) &&
+                        //check if the action requires a description
+                        (actionsWithDescription.contains(input.split(" ")[0]))) {
+                    throw new ArrayIndexOutOfBoundsException();
+                }
             }
 
         }
