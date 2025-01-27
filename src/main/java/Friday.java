@@ -4,6 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+<<<<<<< HEAD
+=======
+import java.time.LocalDateTime;
+>>>>>>> branch-Level-8
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -76,9 +80,25 @@ public class Friday {
                 String[] texts = input.split(" ", 2);
                 addToList(new TodoTask(texts[1]));
             } else if (action.compareTo("deadline") == 0) {
+                //separated input into 1)action and 2)description+/by+date+time
                 String[] texts = input.split(" ", 2);
+<<<<<<< HEAD
                 String[] dates = texts[1].split("/by", 2);
                 addToList(new DeadlineTask(dates[0], dates[1]));
+=======
+                //separates text into 1)description and 2)date+time
+                String[] dates = texts[1].split("/by ", 2);
+
+                try {
+                    //checks if the user input date follows a valid format, and add it into allTasks if it is valid
+                    LocalDateTime date = DeadlineTask.createDateFormatted(dates[1]);
+                    addToList(new DeadlineTask(dates[0], date));
+                } catch (DukeException e) {
+                    //if the user input date has an invalid format, do not add it into allTasks
+                    System.out.println("please input a valid date");
+                    continue;
+                }
+>>>>>>> branch-Level-8
             } else if (action.compareTo("event") == 0) {
                 String[] texts = input.split(" ", 2);
                 String[] activity = texts[1].split("/from", 2);
@@ -210,7 +230,7 @@ public class Friday {
         if(input.split(" ").length <= 1) {
             String action = input.split(" ")[0];
             if(!availableActions.contains(action)) {
-                throw new DukeException();
+                throw new DukeException("please input a valid action");
             } else {
                 //check if there exist a description
                 if ((input.split(" ").length <= 1) &&
