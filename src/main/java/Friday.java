@@ -1,172 +1,211 @@
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.File;
+import java.io.IOException;
 import java.io.PrintWriter;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+import dukeexceptions.DukeException;
+import tasks.DeadlineTask;
+import tasks.EventTask;
+import tasks.Task;
+import tasks.TodoTask;
+
 public class Friday {
+    //relative filepath
+    static String home = System.getProperty("user.home");
+    static java.nio.file.Path filePath = java.nio.file.Paths.get(home, "Desktop", "TaskList");
+
+    //TaskList that stores all tasks
     static ArrayList allTasks = new ArrayList<Task>();
-    //list of text inputs
-    static List<String> availableActions =
-            Arrays.asList("list", "mark", "unmark", "bye", "todo", "deadline", "event");
-    static List<String> actionsWithDescription =
-            Arrays.asList("mark", "unmark", "todo", "deadline", "event");
 
+    //list of allowable text inputs
+    static List<String> availableActions = Arrays.asList("list", "mark", "unmark", "bye", "todo", "deadline", "event");
+    static List<String> actionsWithDescription = Arrays.asList("mark", "unmark", "todo", "deadline", "event");
 
-    public static void main(String[] args) throws DukeException {
+    public static void main(String[] args) throws DukeException, FileNotFoundException {
+        //I/O readers
         Scanner in = new Scanner(System.in);
         PrintWriter out = new PrintWriter(System.out);
 
-        introduction(); //Friday's greetings
+        greet();
+        //creates TaskList file at the FILE_PATH if it doesn't exist
+        retriveFile();
 
         while (true) {
             String input = in.nextLine(); //new task
             String action = input.split(" ")[0];
 
+            //continuously receive user input until user types "bye"
             if (action.compareTo("bye") == 0) {
-                goodbye(); //goodbye message
-                break;
-            } try {
+                try {
+                    //save allTasks into TaskList file
+                    farewell();
+                } catch (IOException e){
+                    //unable to save allTasks into TaskList file
+                    System.out.println("Error saving TaskList");
+                } finally {
+                    break;
+                }
+            }
+
+            //check input for valid actions
+            try {
                 checkInput(input);
             } catch(DukeException e) {
                 System.out.println(returnMessage("Unknown action. Please input a Todo/Deadline/Event action"));
             } catch(ArrayIndexOutOfBoundsException e) {
-                System.out.println(returnMessage("Please provide more details for the " + input.split(" ")[0] + " action."));
+                System.out.println(returnMessage("Please provide more details for the "
+                        + input.split(" ")[0] + " action."));
                 continue;
             }
+
             if (action.compareTo("list") == 0) {
                 returnList();
             } else if (action.compareTo("unmark") == 0) {
-                int index = Integer.parseInt(input.split(" ")[1]) -1;
+                int index = Integer.parseInt(input.split(" ")[1]) - 1;
                 unmark(index);
             } else if (action.compareTo("mark") == 0) {
-                int index = Integer.parseInt(input.split(" ")[1]) -1;
+                int index = Integer.parseInt(input.split(" ")[1]) - 1;
                 mark(index);
             } else if (action.compareTo("todo") == 0) {
                 String[] texts = input.split(" ", 2);
-                addToList(new Todo(texts[1]));
+                addToList(new TodoTask(texts[1]));
             } else if (action.compareTo("deadline") == 0) {
                 String[] texts = input.split(" ", 2);
                 String[] dates = texts[1].split("/by", 2);
-                addToList(new Deadline(dates[0], dates[1]));
+                addToList(new DeadlineTask(dates[0], dates[1]));
             } else if (action.compareTo("event") == 0) {
                 String[] texts = input.split(" ", 2);
                 String[] activity = texts[1].split("/from", 2);
                 String[] period = activity[1].split("/to", 2);
-                addToList(new Event(activity[0], period[0], period[1]));
+                addToList(new EventTask(activity[0], period[0], period[1]));
             } else if (action.compareTo("delete") == 0) {
-                int index = Integer.parseInt(input.split(" ")[1]) -1;
+                int index = Integer.parseInt(input.split(" ")[1]) - 1;
                 delete(index);
             }
         }
         out.close();
     }
-    static String returnMessage(String message) {
+
+    /**
+     * Returns a String with padding above and below.
+     * @param message String to be padded.
+     * @return Padded String.
+     */
+    public static String returnMessage(String message) {
         return ("____________________________________\n" + message + "\n____________________________________\n");
     }
 
-    static void introduction() {
+    /**
+     * Returns a greeting.
+     */
+    public static void greet() {
         System.out.print(returnMessage("Hello ! I'm Friday\n" + "What can I do for you?"));
     }
-    static void goodbye() {
+
+    /**
+     * Adds every String in allTasks into the TaskList file.
+     * @throws IOException If TaskList file is not found.
+     */
+    public static void farewell() throws IOException{
         System.out.println(returnMessage("Bye. Hope to see you again soon!"));
+        FileWriter fw = new FileWriter(String.valueOf(filePath));
+        for (int i = 0; i < allTasks.size(); i++) {
+            fw.write(allTasks.get(i).toString() + "\n");
+        }
+        fw.close();
     }
-    static void returnList() {
+
+    /**
+     * Prints out every item in allTasks with paddings above and below.
+     */
+    public static void returnList() {
         int counter = 1;
         System.out.println("____________________________________\n" + "Here are the tasks in your list:");
-        for (int i=0; i<allTasks.size(); i++) {
+        for (int i = 0; i < allTasks.size(); i++) {
             System.out.println(counter + "." + allTasks.get(i).toString());
             counter++;
         }
         System.out.println("____________________________________");
     }
-    static void addToList(Task task) {
+
+    /**
+     * Adds a task into allTasks.
+     * @param task Task to be added into allTasks.
+     */
+    public static void addToList(Task task) {
         allTasks.add(task);
-        System.out.print(returnMessage("Got it. I've added this task:\n" + task.toString() + "\n" + taskcounter()));
+        System.out.print(returnMessage("Got it. I've added this task:\n" + task.toString() + "\n" + getTaskCount()));
     }
-    static String taskcounter() {
+
+    /**
+     * Returns a String indicating the number of tasks in allTasks.
+     * @return String with the number of tasks in allTasks.
+     */
+    public static String getTaskCount() {
         return ("Now you have " + allTasks.size() + " tasks in the list.");
     }
-    static void unmark(int index) {
+
+    /**
+     * Unmarks the checkbox of a task in allTasks.
+     * @param index Index of the checkbox index to be unmarked.
+     */
+    public static void unmark(int index) {
         Task task = (Task) allTasks.get(index);
-        task.isDone = false;
+        task.setTaskStatus(false);
         System.out.print(returnMessage("OK, I've marked this task as not done yet:\n" + task.toString()));
     }
-    static void mark(int index) {
+
+    /**
+     * Marks the checkbox of a task in allTasks.
+     * @param index Index of the checkbox index to be marked.
+     */
+    public static void mark(int index) {
         Task task = (Task) allTasks.get(index);
-        task.isDone = true;
+        task.setTaskStatus(true);
         System.out.print(returnMessage("Nice! I've marked this task as done:\n" + task.toString()));
     }
-    static void delete(int index) {
+
+    /**
+     * Deletes a task in allTasks.
+     * @param index Index of the task to be deleted in allTasks.
+     */
+    public static void delete(int index) {
         Task task = (Task) allTasks.get(index);
         allTasks.remove(index);
-        System.out.print(returnMessage("Noted. I've removed this task:\n" +
-                task.toString() + "\n" + taskcounter()));
+        System.out.print(returnMessage("Noted. I've removed this task:\n" + task.toString() + "\n" + getTaskCount()));
     }
 
-    public static class Task {
-        protected String description;
-        protected boolean isDone;
-
-        public Task(String description) {
-            this.description = description;
-            this.isDone = false;
-        }
-
-        public String getStatusIcon() {
-            return (isDone ? "X" : " "); // mark done task with X
-        }
-        @Override
-        public String toString() {
-            return "[" + this.getStatusIcon() + "] " + this.description;
-        }
-    }
-
-    public static class Todo extends Task {
-        public Todo(String description) {
-            super(description);
-        }
-
-        @Override
-        public String toString() {
-            return ("[T]" + super.toString());
+    /**
+     * Creates new TaskList file if it does not exist.
+     */
+    public static void retriveFile() {
+        try {
+            File f = new File(String.valueOf(filePath));
+            if (f.createNewFile()) {
+                System.out.print(returnMessage("creating new TaskList file"));
+            } else {
+                System.out.print(returnMessage("accessing TaskList file"));
+                Scanner s = new Scanner(f);
+                while (s.hasNext()) {
+                    allTasks.add(s.nextLine());
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("an error occured");
         }
     }
 
-    public static class Deadline extends Task {
-        protected String by;
-        public Deadline(String description, String by) {
-            super(description);
-            this.by = by;
-        }
-
-        @Override
-        public String toString() {
-            return ("[D]" + super.toString() + " (by:" + by + ")");
-        }
-    }
-
-    public static class Event extends Task {
-        protected String from;
-        protected String to;
-        public Event(String description, String from, String to) {
-            super(description);
-            this.from = from;
-            this.to = to;
-        }
-
-        @Override
-        public String toString() {
-            return ("[E]" + super.toString() + " (from:" + from + "to:" + to + ")");
-        }
-    }
-
-    public static class DukeException extends Exception {
-        public DukeException() {
-            super();
-        }
-    }
-
+    /**
+     * Checks if the user input is a valid action within availableActions and actionsWithDescription.
+     * @param input The user input.
+     * @throws DukeException If the user input is not an action within availableActions.
+     */
     public static void checkInput(String input) throws DukeException {
         if(input.split(" ").length <= 1) {
             String action = input.split(" ")[0];
