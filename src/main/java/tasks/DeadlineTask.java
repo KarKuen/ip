@@ -1,12 +1,5 @@
 package tasks;
 
-<<<<<<< HEAD
-//a deadline task with a deadline, indicated by the "by" variable.
-public class DeadlineTask extends Task {
-    protected String by;
-
-    public DeadlineTask(String description, String by) {
-=======
 import dukeexceptions.DukeException;
 
 import java.time.LocalDateTime;
@@ -19,16 +12,10 @@ public class DeadlineTask extends Task {
     protected LocalDateTime by;
 
     public DeadlineTask(String description, LocalDateTime by) {
->>>>>>> branch-Level-8
         super(description);
         this.by = by;
     }
 
-<<<<<<< HEAD
-    @Override
-    public String toString() {
-        return ("[D]" + super.toString() + " (by:" + by + ")");
-=======
     /**
      *
      * @param date The date to check against.
@@ -56,6 +43,5 @@ public class DeadlineTask extends Task {
     @Override
     public String toString() {
         return ("[D]" + super.toString() + " (by:" + by.format(DateTimeFormatter.ofPattern("MMM dd yyyy ha")) + ")");
->>>>>>> branch-Level-8
     }
 }
