@@ -6,7 +6,7 @@ import friday.command.Command;
 import friday.dukeexceptions.DukeException;
 import friday.ui.Ui;
 import friday.storage.Storage;
-import friday.taskList.TaskList;
+import friday.tasklist.TaskList;
 import friday.parser.Parser;
 
 public class Friday {

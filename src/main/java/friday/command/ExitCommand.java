@@ -2,7 +2,7 @@ package friday.command;
 
 import friday.dukeexceptions.DukeException;
 import friday.storage.Storage;
-import friday.taskList.TaskList;
+import friday.tasklist.TaskList;
 import friday.ui.Ui;
 
 import java.io.IOException;

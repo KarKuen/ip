@@ -2,7 +2,7 @@ package friday.command;
 
 import friday.dukeexceptions.DukeException;
 import friday.storage.Storage;
-import friday.taskList.TaskList;
+import friday.tasklist.TaskList;
 import friday.tasks.DeadlineTask;
 import friday.tasks.EventTask;
 import friday.tasks.TodoTask;

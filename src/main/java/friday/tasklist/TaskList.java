@@ -1,4 +1,4 @@
-package friday.taskList;
+package friday.tasklist;
 
 import friday.ui.Ui;
 import friday.tasks.Task;
