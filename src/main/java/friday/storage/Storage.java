@@ -11,12 +11,18 @@ import java.util.Scanner;
 public class Storage {
     private static String filepath;
 
-    //loading friday.tasks from the file and saving friday.tasks in the file
+    /**
+     * Loading tasks from the file and saving tasks in the file
+     * @param filepath The filepath to be loaded.
+     */
     public Storage(String filepath) {
         this.filepath = filepath;
     }
+
     /**
-     * Creates new TaskList file if it does not exist.
+     * Locates the TaskList file, creating it if it does not exist.
+     * @return The tasks within the TaskList file.
+     * @throws DukeException When a TaskList file cannot be created.
      */
     public ArrayList loadFile() throws DukeException {
         try {
@@ -37,8 +43,9 @@ public class Storage {
     }
 
     /**
-     * Adds every String in allTasks into the TaskList file.
-     * @throws IOException If TaskList file is not found.
+     * Saves all tasks into the TaskList file.
+     * @param allTasks The tasks to be saved into the TaskList file.
+     * @throws IOException When the tasks cannot be written into the TaskList file.
      */
     public static void saveFile(ArrayList allTasks) throws IOException{
         FileWriter fw = new FileWriter(filepath);

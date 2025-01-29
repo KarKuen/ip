@@ -8,6 +8,10 @@ public class DukeException extends Exception {
         this.message = message;
     }
 
+    /**
+     * Returns the message associated with the DukeException.
+     * @return The message to be returned.
+     */
     public String getMessage() {
         return this.message;
     }

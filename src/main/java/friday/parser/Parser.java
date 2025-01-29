@@ -14,9 +14,10 @@ public class Parser {
             "mark", "unmark", "todo", "deadline", "event");
 
     /**
-     * Checks if the user input is a valid action within availableActions and actionsWithDescription.
+     * Checks if the user input is a valid action within availableActions and actionsWithDescription,
+     * creating the relevant Command Object according to the task's action.
      * @param fullCommand The user input.
-     * @throws DukeException If the user input is not an action within availableActions.
+     * @throws DukeException If the user input is not an action within availableActions or if the input in invalid.
      */
     public static Command parse(String fullCommand) throws DukeException {
         if(fullCommand.split(" ").length <= 1) {
