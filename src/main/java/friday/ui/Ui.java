@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ui {
+    private static Scanner in = new Scanner(System.in);
+
     public Ui() {}
 
     /**
@@ -50,7 +52,6 @@ public class Ui {
     }
 
     public String readCommand() {
-        Scanner in = new Scanner(System.in);
         String input = in.nextLine(); //new task
         return input;
     }
