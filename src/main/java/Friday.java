@@ -1,8 +1,4 @@
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
-
-import java.util.Scanner;
 
 import command.Command;
 import dukeexceptions.DukeException;
@@ -46,20 +42,6 @@ public class Friday {
             } finally {
                 ui.showLine();
             }
-
-            /*
-            //check input for valid actions
-            try {
-                Parser.parse(input);
-            } catch (DukeException e) {
-                System.out.println(Ui.formatString("Unknown action. Please input a Todo/Deadline/Event action"));
-            } catch (ArrayIndexOutOfBoundsException e) {
-                System.out.println(Ui.formatString("Please provide more details for the "
-                        + input.split(" ")[0] + " action."));
-                continue;
-            }
-            */
-
         }
     }
 

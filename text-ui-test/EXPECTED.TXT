@@ -4,12 +4,9 @@ What can I do for you?
 ____________________________________
 ____________________________________
 Got it. I've added this task:
-[T][ ] borrow book
+[D][ ] return book  (by:Oct 15 2019 6PM)
 Now you have 1 tasks in the list.
 ____________________________________
-Got it. I've added this task:
-[D][ ] return book  (by:Oct 15 2019 6pm)
-Now you have 1 tasks in the list.
 ____________________________________
 Got it. I've added this task:
 [E][ ] project meeting  (from: Mon 2pm to: 4pm)
@@ -17,19 +14,19 @@ Now you have 2 tasks in the list.
 ____________________________________
 ____________________________________
 Nice! I've marked this task as done:
-[T][X] borrow book
+[D][X] return book  (by:Oct 15 2019 6pm)
 ____________________________________
 ____________________________________
 Here are the tasks in your list:
-1.[T][X] borrow book
+1.[D][X] return book  (by:Oct 15 2019 6pm)
 2.[E][ ] project meeting  (from: Mon 2pm to: 4pm)
 ____________________________________
 ____________________________________
 OK, I've marked this task as not done yet:
-[T][ ] borrow book
+[D][ ] return book  (by:Oct 15 2019 6pm)
 ____________________________________
 ____________________________________
 Here are the tasks in your list:
-1.[T][ ] borrow book
+1.[D][ ] return book  (by:Oct 15 2019 6pm)
 2.[E][ ] project meeting  (from: Mon 2pm to: 4pm)
 ____________________________________
