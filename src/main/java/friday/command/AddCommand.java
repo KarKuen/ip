@@ -1,12 +1,12 @@
-package command;
+package friday.command;
 
-import dukeexceptions.DukeException;
-import storage.Storage;
-import taskList.TaskList;
-import tasks.DeadlineTask;
-import tasks.EventTask;
-import tasks.TodoTask;
-import ui.Ui;
+import friday.dukeexceptions.DukeException;
+import friday.storage.Storage;
+import friday.taskList.TaskList;
+import friday.tasks.DeadlineTask;
+import friday.tasks.EventTask;
+import friday.tasks.TodoTask;
+import friday.ui.Ui;
 
 import java.time.LocalDateTime;
 

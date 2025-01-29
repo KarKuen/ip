@@ -1,4 +1,4 @@
-package tasks;
+package friday.tasks;
 
 //an event task with a start and end date, indicated by the "from" and "to" variables.
 public class EventTask extends Task {

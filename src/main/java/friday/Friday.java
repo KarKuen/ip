@@ -1,11 +1,13 @@
+package friday;
+
 import java.io.FileNotFoundException;
 
-import command.Command;
-import dukeexceptions.DukeException;
-import ui.Ui;
-import storage.Storage;
-import taskList.TaskList;
-import parser.Parser;
+import friday.command.Command;
+import friday.dukeexceptions.DukeException;
+import friday.ui.Ui;
+import friday.storage.Storage;
+import friday.taskList.TaskList;
+import friday.parser.Parser;
 
 public class Friday {
     private Storage storage;

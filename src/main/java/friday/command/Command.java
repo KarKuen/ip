@@ -1,9 +1,9 @@
-package command;
+package friday.command;
 
-import dukeexceptions.DukeException;
-import storage.Storage;
-import taskList.TaskList;
-import ui.Ui;
+import friday.dukeexceptions.DukeException;
+import friday.storage.Storage;
+import friday.taskList.TaskList;
+import friday.ui.Ui;
 
 public abstract class Command {
     private String action;

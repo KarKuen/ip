@@ -1,6 +1,6 @@
-package tasks;
+package friday.tasks;
 
-import dukeexceptions.DukeException;
+import friday.dukeexceptions.DukeException;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

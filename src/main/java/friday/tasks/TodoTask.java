@@ -1,4 +1,4 @@
-package tasks;
+package friday.tasks;
 
 //a todo task.
 public class TodoTask extends Task {

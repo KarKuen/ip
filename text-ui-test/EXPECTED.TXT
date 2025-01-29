@@ -1,23 +1,23 @@
 ____________________________________
-Hello ! I'm Friday
+Hello ! I'm friday.Friday
 What can I do for you?
 ____________________________________
 ____________________________________
 Got it. I've added this task:
 [D][ ] return book  (by:Oct 15 2019 6PM)
-Now you have 1 tasks in the list.
+Now you have 1 friday.tasks in the list.
 ____________________________________
 ____________________________________
 Got it. I've added this task:
 [E][ ] project meeting  (from: Mon 2pm to: 4pm)
-Now you have 2 tasks in the list.
+Now you have 2 friday.tasks in the list.
 ____________________________________
 ____________________________________
 Nice! I've marked this task as done:
 [D][X] return book  (by:Oct 15 2019 6pm)
 ____________________________________
 ____________________________________
-Here are the tasks in your list:
+Here are the friday.tasks in your list:
 1.[D][X] return book  (by:Oct 15 2019 6pm)
 2.[E][ ] project meeting  (from: Mon 2pm to: 4pm)
 ____________________________________
@@ -26,7 +26,7 @@ OK, I've marked this task as not done yet:
 [D][ ] return book  (by:Oct 15 2019 6pm)
 ____________________________________
 ____________________________________
-Here are the tasks in your list:
+Here are the friday.tasks in your list:
 1.[D][ ] return book  (by:Oct 15 2019 6pm)
 2.[E][ ] project meeting  (from: Mon 2pm to: 4pm)
 ____________________________________

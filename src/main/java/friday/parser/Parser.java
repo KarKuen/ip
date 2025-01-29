@@ -1,7 +1,7 @@
-package parser;
+package friday.parser;
 
-import command.*;
-import dukeexceptions.DukeException;
+import friday.command.*;
+import friday.dukeexceptions.DukeException;
 
 import java.util.Arrays;
 import java.util.List;

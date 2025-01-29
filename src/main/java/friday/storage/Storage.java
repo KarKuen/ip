@@ -1,7 +1,6 @@
-package storage;
+package friday.storage;
 
-import ui.Ui;
-import dukeexceptions.DukeException;
+import friday.dukeexceptions.DukeException;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -12,7 +11,7 @@ import java.util.Scanner;
 public class Storage {
     private static String filepath;
 
-    //loading tasks from the file and saving tasks in the file
+    //loading friday.tasks from the file and saving friday.tasks in the file
     public Storage(String filepath) {
         this.filepath = filepath;
     }

@@ -1,4 +1,4 @@
-package ui;
+package friday.ui;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -21,7 +21,7 @@ public class Ui {
      * @return The introductory greet.
      */
     public static void greet() {
-        System.out.print(formatString("Hello ! I'm Friday\n" + "What can I do for you?"));
+        System.out.print(formatString("Hello ! I'm friday.Friday\n" + "What can I do for you?"));
     }
 
     /**
@@ -38,7 +38,7 @@ public class Ui {
      */
     public static void printList(ArrayList allTasks) {
         int counter = 1;
-        System.out.println("Here are the tasks in your list:");
+        System.out.println("Here are the friday.tasks in your list:");
         for (int i = 0; i < allTasks.size(); i++) {
             System.out.println(counter + "." + allTasks.get(i).toString());
             counter++;

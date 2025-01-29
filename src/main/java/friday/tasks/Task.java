@@ -1,4 +1,4 @@
-package tasks;
+package friday.tasks;
 
 //an abstract task class.
 public abstract class Task {

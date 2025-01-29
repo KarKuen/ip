@@ -1,12 +1,12 @@
-package taskList;
+package friday.taskList;
 
-import ui.Ui;
-import tasks.Task;
+import friday.ui.Ui;
+import friday.tasks.Task;
 
 import java.util.ArrayList;
 
 public class TaskList {
-    //TaskList that stores all tasks
+    //TaskList that stores all friday.tasks
     private static ArrayList allTasks;
 
     public TaskList(ArrayList temporaryFile) {
@@ -31,11 +31,11 @@ public class TaskList {
     }
 
     /**
-     * Returns a String indicating the number of tasks in allTasks.
-     * @return String with the number of tasks in allTasks.
+     * Returns a String indicating the number of friday.tasks in allTasks.
+     * @return String with the number of friday.tasks in allTasks.
      */
     public static String getTaskCount() {
-        return ("Now you have " + allTasks.size() + " tasks in the list.");
+        return ("Now you have " + allTasks.size() + " friday.tasks in the list.");
     }
 
     /**

@@ -1,4 +1,4 @@
-package dukeexceptions;
+package friday.dukeexceptions;
 
 public class DukeException extends Exception {
     private String message;
