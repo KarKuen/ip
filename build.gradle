@@ -28,13 +28,23 @@ test {
 }
 
 application {
-    mainClass.set("seedu.duke.Duke")
+    mainClass.set("friday.Friday")
 }
 
+jar {
+    manifest {
+        attributes('Main-Class': application.mainClass.get())
+    }
+}
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "friday"
     archiveClassifier = null
 }
+
 
 run{
     standardInput = System.in
