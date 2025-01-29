@@ -26,6 +26,7 @@ public class DeadlineTask extends Task {
         DateTimeFormatter dateFormatter = new DateTimeFormatterBuilder()
                 .appendOptional(DateTimeFormatter.ofPattern("d/M/yyyy HHmm"))
                 .appendOptional(DateTimeFormatter.ofPattern("yyyy-M-d HHmm"))
+                .appendOptional(DateTimeFormatter.ofPattern("MMMM d HH:mm"))
                 .toFormatter();
 
         try {

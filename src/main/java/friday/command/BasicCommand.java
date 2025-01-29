@@ -21,6 +21,9 @@ public class BasicCommand extends Command {
             TaskList.mark(index);
         } else if (action.compareTo("list") == 0) {
             Ui.printList(TaskList.returnList());
+        } else if (action.compareTo("find") == 0) {
+            String toSearch = this.getDescription();
+            Ui.printList(TaskList.returnFilteredList(toSearch));
         }
     }
 }
