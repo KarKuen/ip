@@ -21,6 +21,16 @@ public class TaskList {
         return allTasks;
     }
 
+    public static ArrayList returnFilteredList(String toSearch) {
+        ArrayList filteredList = new ArrayList<>();
+        for (int i = 0; i < allTasks.size(); i++) {
+            if (allTasks.get(i).toString().contains(toSearch)) {
+                filteredList.add(allTasks.get(i).toString());
+            }
+        }
+        return filteredList;
+    }
+
     /**
      * Adds a task into allTasks.
      * @param task Task to be added into allTasks.
