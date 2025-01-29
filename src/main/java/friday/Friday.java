@@ -1,13 +1,13 @@
 package friday;
 
-import java.io.FileNotFoundException;
-
 import friday.command.Command;
 import friday.dukeexceptions.DukeException;
 import friday.ui.Ui;
 import friday.storage.Storage;
 import friday.tasklist.TaskList;
 import friday.parser.Parser;
+
+import java.io.FileNotFoundException;
 
 public class Friday {
     private Storage storage;
