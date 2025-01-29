@@ -1,12 +1,13 @@
 package friday.storage;
 
-import friday.dukeexceptions.DukeException;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import friday.dukeexceptions.DukeException;
 
 public class Storage {
     private static String filepath;
