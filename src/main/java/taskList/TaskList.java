@@ -1,6 +1,6 @@
 package taskList;
 
-import Ui.Ui;
+import ui.Ui;
 import tasks.Task;
 
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class TaskList {
      */
     public static void addToList(Task task) {
         allTasks.add(task);
-        System.out.print(Ui.formatString("Got it. I've added this task:\n" + task.toString() + "\n" + getTaskCount()));
+        Ui.showUpdate("Got it. I've added this task:\n" + task.toString() + "\n" + getTaskCount());
     }
 
     /**
@@ -45,7 +45,7 @@ public class TaskList {
     public static void unmark(int index) {
         Task task = (Task) allTasks.get(index);
         task.setTaskStatus(false);
-        System.out.print(Ui.formatString("OK, I've marked this task as not done yet:\n" + task.toString()));
+        Ui.showUpdate("OK, I've marked this task as not done yet:\n" + task.toString());
     }
 
     /**
@@ -55,7 +55,7 @@ public class TaskList {
     public static void mark(int index) {
         Task task = (Task) allTasks.get(index);
         task.setTaskStatus(true);
-        System.out.print(Ui.formatString("Nice! I've marked this task as done:\n" + task.toString()));
+        Ui.showUpdate("Nice! I've marked this task as done:\n" + task.toString());
     }
 
     /**
@@ -65,6 +65,6 @@ public class TaskList {
     public static void delete(int index) {
         Task task = (Task) allTasks.get(index);
         allTasks.remove(index);
-        System.out.print(Ui.formatString("Noted. I've removed this task:\n" + task.toString() + "\n" + getTaskCount()));
+        Ui.showUpdate("Noted. I've removed this task:\n" + task.toString() + "\n" + getTaskCount());
     }
 }

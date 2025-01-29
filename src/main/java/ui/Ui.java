@@ -1,6 +1,7 @@
-package Ui;
+package ui;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Ui {
     public Ui() {}
@@ -10,6 +11,7 @@ public class Ui {
      * @param message String to be padded.
      * @return Padded String.
      */
+
     public static String formatString(String message) {
         return ("____________________________________\n" + message + "\n____________________________________\n");
     }
@@ -27,7 +29,7 @@ public class Ui {
      * @return The farewell message.
      */
     public static void farewell() {
-        System.out.println(formatString("Bye. Hope to see you again soon!"));
+        System.out.println("Bye. Hope to see you again soon!");
     }
 
     /**
@@ -36,15 +38,33 @@ public class Ui {
      */
     public static void printList(ArrayList allTasks) {
         int counter = 1;
-        System.out.println("____________________________________\n" + "Here are the tasks in your list:");
+        System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < allTasks.size(); i++) {
             System.out.println(counter + "." + allTasks.get(i).toString());
             counter++;
         }
+    }
+
+    public String showLoadingError(String message) {
+        return (message);
+    }
+
+    public String readCommand() {
+        Scanner in = new Scanner(System.in);
+        String input = in.nextLine(); //new task
+        return input;
+    }
+
+    public void showError(String message) {
+        System.out.println(message);
+    }
+
+    public static void showLine() {
         System.out.println("____________________________________");
     }
 
-    public String showLoadingError() {
-        return ("A problem occured when loading in TaskList file");
+    public static void showUpdate(String message) {
+        System.out.println(message);
     }
+
 }

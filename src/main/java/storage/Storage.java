@@ -1,6 +1,6 @@
 package storage;
 
-import Ui.Ui;
+import ui.Ui;
 import dukeexceptions.DukeException;
 
 import java.io.File;
@@ -23,10 +23,9 @@ public class Storage {
         try {
             File f = new File(filepath);
             if (f.createNewFile()) {
-                throw new DukeException(Ui.formatString("TaskList not found, creating new TaskList file"));
+                throw new DukeException("TaskList not found, creating new TaskList file");
             } else {
                 ArrayList temporaryFile = new ArrayList<>();
-                System.out.print(Ui.formatString("accessing TaskList file"));
                 Scanner s = new Scanner(f);
                 while (s.hasNext()) {
                     temporaryFile.add(s.nextLine());
