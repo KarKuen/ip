@@ -8,6 +8,7 @@ import friday.tasklist.TaskList;
 import friday.parser.Parser;
 
 import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class Friday {
     private Storage storage;
@@ -32,9 +33,10 @@ public class Friday {
         Ui.greet();
         boolean isExit = false;
 
+        Scanner in = new Scanner(System.in);
         while (!isExit) {
             try {
-                String fullCommand = ui.readCommand();
+                String fullCommand = ui.readCommand(in);
                 ui.showLine();
                 Command c = Parser.parse(fullCommand);
                 c.execute(tasks, ui, storage);

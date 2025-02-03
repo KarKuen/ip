@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ui {
-    private static Scanner in = new Scanner(System.in);
 
     public Ui() {}
 
@@ -13,7 +12,6 @@ public class Ui {
      * @param message String to be padded.
      * @return Padded String.
      */
-
     public static String formatString(String message) {
         return ("____________________________________\n" + message + "\n____________________________________\n");
     }
@@ -51,7 +49,7 @@ public class Ui {
         return (message);
     }
 
-    public String readCommand() {
+    public String readCommand(Scanner in) {
         String input = in.nextLine(); //new task
         return input;
     }

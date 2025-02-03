@@ -17,7 +17,7 @@ public class DeadlineTask extends Task {
     }
 
     /**
-     *
+     * Returns a LocalDateTime object.
      * @param date The date to check against.
      * @return Return the date as a LocalDateTime if it is in a valid format.
      * @throws DukeException If the date has an invalid format.
