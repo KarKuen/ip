@@ -25,13 +25,13 @@ public class Storage {
      * @return The tasks within the TaskList file.
      * @throws DukeException When a TaskList file cannot be created.
      */
-    public ArrayList loadFile() throws DukeException {
+    public ArrayList<String> loadFile() throws DukeException {
         try {
             File f = new File(filepath);
             if (f.createNewFile()) {
                 throw new DukeException("TaskList not found, creating new TaskList file");
             } else {
-                ArrayList temporaryFile = new ArrayList<>();
+                ArrayList<String> temporaryFile = new ArrayList<>();
                 Scanner s = new Scanner(f);
                 while (s.hasNext()) {
                     temporaryFile.add(s.nextLine());

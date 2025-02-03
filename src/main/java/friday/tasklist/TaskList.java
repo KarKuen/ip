@@ -9,20 +9,20 @@ public class TaskList {
     //TaskList that stores all friday.tasks
     private static ArrayList allTasks;
 
-    public TaskList(ArrayList temporaryFile) {
+    public TaskList(ArrayList<String> temporaryFile) {
         this.allTasks = temporaryFile;
     }
 
     public TaskList() {
-        this.allTasks = new ArrayList();
+        this.allTasks = new ArrayList<Task>();
     }
 
     public static ArrayList returnList() {
         return allTasks;
     }
 
-    public static ArrayList returnFilteredList(String toSearch) {
-        ArrayList filteredList = new ArrayList<>();
+    public static ArrayList<String> returnFilteredList(String toSearch) {
+        ArrayList<String> filteredList = new ArrayList<>();
         for (int i = 0; i < allTasks.size(); i++) {
             if (allTasks.get(i).toString().contains(toSearch)) {
                 filteredList.add(allTasks.get(i).toString());
@@ -35,6 +35,7 @@ public class TaskList {
      * Adds a task into allTasks.
      * @param task Task to be added into allTasks.
      */
+    @SuppressWarnings("unchecked") //SuppressWarnings of adding Task task into the generic ArrayList allTasks
     public static void addToList(Task task) {
         allTasks.add(task);
         Ui.showUpdate("Got it. I've added this task:\n" + task.toString() + "\n" + getTaskCount());
