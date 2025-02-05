@@ -1,6 +1,6 @@
 package friday.command;
 
-import friday.dukeexceptions.DukeException;
+import friday.fridayexceptions.FridayException;
 import friday.storage.Storage;
 import friday.tasklist.TaskList;
 import friday.ui.Ui;
@@ -22,7 +22,7 @@ public abstract class Command {
         }
     }
 
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {}
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws FridayException {}
 
     public String getAction() {
         return this.action;

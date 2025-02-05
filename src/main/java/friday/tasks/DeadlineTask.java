@@ -1,6 +1,6 @@
 package friday.tasks;
 
-import friday.dukeexceptions.DukeException;
+import friday.fridayexceptions.FridayException;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -20,9 +20,9 @@ public class DeadlineTask extends Task {
      * Returns a LocalDateTime object.
      * @param date The date to check against.
      * @return Return the date as a LocalDateTime if it is in a valid format.
-     * @throws DukeException If the date has an invalid format.
+     * @throws FridayException If the date has an invalid format.
      */
-    public static LocalDateTime createDateFormatted(String date) throws DukeException {
+    public static LocalDateTime createDateFormatted(String date) throws FridayException {
         DateTimeFormatter dateFormatter = new DateTimeFormatterBuilder()
                 .appendOptional(DateTimeFormatter.ofPattern("d/M/yyyy HHmm"))
                 .appendOptional(DateTimeFormatter.ofPattern("yyyy-M-d HHmm"))
@@ -33,7 +33,7 @@ public class DeadlineTask extends Task {
             LocalDateTime checkDate = LocalDateTime.parse(date, dateFormatter);
             return checkDate;
         } catch (DateTimeParseException e) {
-            throw new DukeException("Invalid date format");
+            throw new FridayException("Invalid date format");
         }
     }
 

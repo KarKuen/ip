@@ -1,9 +1,9 @@
-package friday.dukeexceptions;
+package friday.fridayexceptions;
 
-public class DukeException extends Exception {
+public class FridayException extends Exception {
     private String message;
 
-    public DukeException(String message) {
+    public FridayException(String message) {
         super(message);
         this.message = message;
     }

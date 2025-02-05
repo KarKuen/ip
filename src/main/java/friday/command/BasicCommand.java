@@ -1,6 +1,6 @@
 package friday.command;
 
-import friday.dukeexceptions.DukeException;
+import friday.fridayexceptions.FridayException;
 import friday.storage.Storage;
 import friday.tasklist.TaskList;
 import friday.ui.Ui;
@@ -11,7 +11,7 @@ public class BasicCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws FridayException {
         String action = this.getAction();
         if (action.compareTo("unmark") == 0) {
             int index = Integer.parseInt(this.getDescription()) - 1;

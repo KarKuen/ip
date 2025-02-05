@@ -1,7 +1,7 @@
 package friday;
 
 import friday.command.Command;
-import friday.dukeexceptions.DukeException;
+import friday.fridayexceptions.FridayException;
 import friday.ui.Ui;
 import friday.storage.Storage;
 import friday.tasklist.TaskList;
@@ -23,7 +23,7 @@ public class Friday {
         storage = new Storage(filePath);
         try {
             tasks = new TaskList(storage.loadFile());
-        } catch (DukeException e) {
+        } catch (FridayException e) {
             ui.showLoadingError("A problem occured when loading in TaskList file");
             tasks = new TaskList();
         }
@@ -41,7 +41,7 @@ public class Friday {
                 Command c = Parser.parse(fullCommand);
                 c.execute(tasks, ui, storage);
                 isExit = c.isExit();
-            } catch (DukeException e) {
+            } catch (FridayException e) {
                 ui.showError(e.getMessage());
             } finally {
                 ui.showLine();
@@ -49,7 +49,7 @@ public class Friday {
         }
     }
 
-    public static void main(String[] args) throws DukeException, FileNotFoundException {
+    public static void main(String[] args) throws FridayException, FileNotFoundException {
         new Friday(filePath).run();
     }
 }

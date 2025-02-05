@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import friday.dukeexceptions.DukeException;
+import friday.fridayexceptions.FridayException;
 
 public class Storage {
     private static String filepath;
@@ -23,13 +23,13 @@ public class Storage {
     /**
      * Locates the TaskList file, creating it if it does not exist.
      * @return The tasks within the TaskList file.
-     * @throws DukeException When a TaskList file cannot be created.
+     * @throws FridayException When a TaskList file cannot be created.
      */
-    public ArrayList<String> loadFile() throws DukeException {
+    public ArrayList<String> loadFile() throws FridayException {
         try {
             File f = new File(filepath);
             if (f.createNewFile()) {
-                throw new DukeException("TaskList not found, creating new TaskList file");
+                throw new FridayException("TaskList not found, creating new TaskList file");
             } else {
                 ArrayList<String> temporaryFile = new ArrayList<>();
                 Scanner s = new Scanner(f);
@@ -39,7 +39,7 @@ public class Storage {
                 return temporaryFile;
             }
         } catch (IOException e) {
-            throw new DukeException("an error occured");
+            throw new FridayException("an error occured");
         }
     }
 

@@ -1,6 +1,6 @@
 package friday.command;
 
-import friday.dukeexceptions.DukeException;
+import friday.fridayexceptions.FridayException;
 import friday.storage.Storage;
 import friday.tasklist.TaskList;
 import friday.ui.Ui;
@@ -13,7 +13,7 @@ public class ExitCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws FridayException {
         try {
             //save allTasks into TaskList file
             Storage.saveFile(TaskList.returnList());
