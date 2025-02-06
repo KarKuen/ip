@@ -22,7 +22,9 @@ public abstract class Command {
         }
     }
 
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws FridayException {}
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws FridayException {
+        return ("abstract method needs to be overridden");
+    }
 
     public String getAction() {
         return this.action;

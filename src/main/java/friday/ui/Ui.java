@@ -28,8 +28,8 @@ public class Ui {
      * Returns a farewell message.
      * @return The farewell message.
      */
-    public static void farewell() {
-        System.out.println("Bye. Hope to see you again soon!");
+    public static String bidFarewell() {
+        return("Bye. Hope to see you again soon!");
     }
 
     /**

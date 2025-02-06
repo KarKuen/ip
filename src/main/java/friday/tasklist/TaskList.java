@@ -1,8 +1,19 @@
 package friday.tasklist;
 
+import friday.command.AddCommand;
+import friday.command.BasicCommand;
+import friday.command.DeleteCommand;
+import friday.command.ExitCommand;
+import friday.fridayexceptions.FridayException;
+import friday.parser.Parser;
+import friday.tasks.DeadlineTask;
+import friday.tasks.EventTask;
+import friday.tasks.TodoTask;
 import friday.ui.Ui;
 import friday.tasks.Task;
+import javafx.util.converter.LocalDateTimeStringConverter;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class TaskList {
@@ -10,7 +21,32 @@ public class TaskList {
     private static ArrayList allTasks;
 
     public TaskList(ArrayList<String> temporaryFile) {
-        this.allTasks = temporaryFile;
+        ArrayList<Task> convertedTemporaryFile = new ArrayList<>();
+        for (int i = 0; i < temporaryFile.size(); i++) {
+            String checkListItem = temporaryFile.get(i);
+            if ((checkListItem.contains("[T]"))) {
+                String todoTask = checkListItem.split("] ")[1];
+                convertedTemporaryFile.add(new TodoTask(todoTask));
+            } else if ((checkListItem.contains("[D]"))) {
+                String deadlineTask = checkListItem.split("] ")[1];
+                String description = deadlineTask.split(" \\(")[0];
+                String by = deadlineTask.split("by: ")[1].split("\\)")[0];
+                try {
+                    LocalDateTime checkDate = DeadlineTask.createDateFormatted(by);
+                    convertedTemporaryFile.add(new DeadlineTask(description, checkDate));
+                } catch (FridayException e) {
+                    throw new RuntimeException(e);
+                }
+            } else if ((checkListItem.contains("[E]"))) {
+                String eventTask = checkListItem.split("] ")[1];
+                String description = eventTask.split(" \\(")[0];
+                String schedule = eventTask.split("from: ")[1];
+                String from = schedule.split(" to:")[0];
+                String to = schedule.split("to: ")[1].split("\\)")[0];
+                convertedTemporaryFile.add(new EventTask(description, from, to));
+            }
+        }
+        this.allTasks = convertedTemporaryFile;
     }
 
     public TaskList() {
@@ -18,7 +54,11 @@ public class TaskList {
     }
 
     public static ArrayList returnList() {
-        return allTasks;
+        ArrayList<String> convertedList = new ArrayList<>();
+        for (int i = 0; i < allTasks.size(); i++) {
+            convertedList.add(allTasks.get(i).toString());
+        }
+        return convertedList;
     }
 
     public static ArrayList<String> returnFilteredList(String toSearch) {
@@ -36,9 +76,9 @@ public class TaskList {
      * @param task Task to be added into allTasks.
      */
     @SuppressWarnings("unchecked") //SuppressWarnings of adding Task task into the generic ArrayList allTasks
-    public static void addToList(Task task) {
+    public static String addToList(Task task) {
         allTasks.add(task);
-        Ui.showUpdate("Got it. I've added this task:\n" + task.toString() + "\n" + getTaskCount());
+        return("Got it. I've added this task:\n" + task.toString() + "\n" + getTaskCount());
     }
 
     /**
@@ -53,29 +93,29 @@ public class TaskList {
      * Unmarks the checkbox of a task in allTasks.
      * @param index Index of the checkbox index to be unmarked.
      */
-    public static void unmark(int index) {
+    public static String unmark(int index) {
         Task task = (Task) allTasks.get(index);
         task.setTaskStatus(false);
-        Ui.showUpdate("OK, I've marked this task as not done yet:\n" + task.toString());
+        return("OK, I've marked this task as not done yet:\n" + task.toString());
     }
 
     /**
      * Marks the checkbox of a task in allTasks.
      * @param index Index of the checkbox index to be marked.
      */
-    public static void mark(int index) {
+    public static String mark(int index) {
         Task task = (Task) allTasks.get(index);
         task.setTaskStatus(true);
-        Ui.showUpdate("Nice! I've marked this task as done:\n" + task.toString());
+        return("Nice! I've marked this task as done:\n" + task.toString());
     }
 
     /**
      * Deletes a task in allTasks.
      * @param index Index of the task to be deleted in allTasks.
      */
-    public static void delete(int index) {
+    public static String delete(int index) {
         Task task = (Task) allTasks.get(index);
         allTasks.remove(index);
-        Ui.showUpdate("Noted. I've removed this task:\n" + task.toString() + "\n" + getTaskCount());
+        return("Noted. I've removed this task:\n" + task.toString() + "\n" + getTaskCount());
     }
 }

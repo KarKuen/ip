@@ -27,6 +27,7 @@ public class DeadlineTask extends Task {
                 .appendOptional(DateTimeFormatter.ofPattern("d/M/yyyy HHmm"))
                 .appendOptional(DateTimeFormatter.ofPattern("yyyy-M-d HHmm"))
                 .appendOptional(DateTimeFormatter.ofPattern("MMMM d HH:mm"))
+                .appendOptional(DateTimeFormatter.ofPattern("MMM dd yyyy hha"))
                 .toFormatter();
 
         try {
@@ -43,6 +44,6 @@ public class DeadlineTask extends Task {
      */
     @Override
     public String toString() {
-        return ("[D]" + super.toString() + " (by:" + by.format(DateTimeFormatter.ofPattern("MMM dd yyyy ha")) + ")");
+        return ("[D]" + super.toString() + " (by: " + by.format(DateTimeFormatter.ofPattern("MMM dd yyyy ha")) + ")");
     }
 }
