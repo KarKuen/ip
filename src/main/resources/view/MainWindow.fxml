@@ -11,7 +11,7 @@
             prefHeight="600.0" prefWidth="400.0"
             xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="friday.MainWindow"> <!-- Note that if you are using packages,
+            fx:controller="friday.gui.MainWindow"> <!-- Note that if you are using packages,
             fx:controller="MainWindow" needs to be updated accordingly e.g., fx:controller="seedu.duke.MainWindow" -->
     <children>
         <TextField fx:id="userInput"

@@ -1,7 +1,8 @@
-package friday;
+package friday.gui;
 
 import java.io.IOException;
 
+import friday.Friday;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

@@ -1,11 +1,6 @@
-package friday;
-import friday.storage.Storage;
-import friday.tasklist.TaskList;
-import friday.ui.Ui;
+package friday.gui;
+import friday.Friday;
 
-import friday.command.Command;
-import friday.fridayexceptions.FridayException;
-import friday.parser.Parser;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
