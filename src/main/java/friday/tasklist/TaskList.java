@@ -1,17 +1,10 @@
 package friday.tasklist;
 
-import friday.command.AddCommand;
-import friday.command.BasicCommand;
-import friday.command.DeleteCommand;
-import friday.command.ExitCommand;
 import friday.fridayexceptions.FridayException;
-import friday.parser.Parser;
 import friday.tasks.DeadlineTask;
 import friday.tasks.EventTask;
 import friday.tasks.TodoTask;
-import friday.ui.Ui;
 import friday.tasks.Task;
-import javafx.util.converter.LocalDateTimeStringConverter;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -25,9 +18,12 @@ public class TaskList {
         for (int i = 0; i < temporaryFile.size(); i++) {
             String checkListItem = temporaryFile.get(i);
             if ((checkListItem.contains("[T]"))) {
+                assert checkListItem.contains("] ") : "Todo task format is incorrect";
                 String todoTask = checkListItem.split("] ")[1];
                 convertedTemporaryFile.add(new TodoTask(todoTask));
             } else if ((checkListItem.contains("[D]"))) {
+                assert checkListItem.contains("] ")
+                        && checkListItem.contains("(by: ") : "Deadline task format is incorrect";
                 String deadlineTask = checkListItem.split("] ")[1];
                 String description = deadlineTask.split(" \\(")[0];
                 String by = deadlineTask.split("by: ")[1].split("\\)")[0];
@@ -38,9 +34,14 @@ public class TaskList {
                     throw new RuntimeException(e);
                 }
             } else if ((checkListItem.contains("[E]"))) {
+                assert checkListItem.contains("] ")
+                        && checkListItem.contains("(from: ")
+                        && checkListItem.contains(" to:") : "Event task format is incorrect";
                 String eventTask = checkListItem.split("] ")[1];
                 String description = eventTask.split(" \\(")[0];
                 String schedule = eventTask.split("from: ")[1];
+
+                assert schedule.contains(" to:") : "Event schedule format is incorrect";
                 String from = schedule.split(" to:")[0];
                 String to = schedule.split("to: ")[1].split("\\)")[0];
                 convertedTemporaryFile.add(new EventTask(description, from, to));
