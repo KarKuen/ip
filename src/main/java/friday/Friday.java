@@ -7,9 +7,6 @@ import friday.storage.Storage;
 import friday.tasklist.TaskList;
 import friday.parser.Parser;
 
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 public class Friday {
     //relative filepath
     private static String home = System.getProperty("user.home");
@@ -20,20 +17,7 @@ public class Friday {
     private Ui ui;
     private boolean isExit;
 
-    public Friday(String filepath) {
-        boolean isExit = false;
-        ui = new Ui();
-        storage = new Storage(filePath);
-        try {
-            tasks = new TaskList(storage.loadFile());
-        } catch (FridayException e) {
-            ui.showLoadingError("A problem occured when loading in TaskList file");
-            tasks = new TaskList();
-        }
-    }
-
     public Friday() {
-        boolean isExit = false;
         ui = new Ui();
         storage = new Storage(filePath);
         try {
