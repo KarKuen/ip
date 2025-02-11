@@ -11,6 +11,11 @@ repositories {
 dependencies {
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.10.0'
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.10.0'
+
+    implementation 'org.openjfx:javafx-controls:21'
+    implementation 'org.openjfx:javafx-fxml:21'
+    implementation 'org.openjfx:javafx-base:21'
+    implementation 'org.openjfx:javafx-graphics:21'
 }
 
 test {
@@ -28,7 +33,7 @@ test {
 }
 
 application {
-    mainClass.set("friday.Friday")
+    mainClass.set("friday.gui.Main")
 }
 
 jar {
