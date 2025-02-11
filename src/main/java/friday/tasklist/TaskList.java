@@ -17,10 +17,10 @@ public class TaskList {
         ArrayList<Task> convertedTemporaryFile = new ArrayList<>();
         for (int i = 0; i < temporaryFile.size(); i++) {
             String checkListItem = temporaryFile.get(i);
-            if ((checkListItem.contains("[T]"))) {
+            if ((checkListItem.contains(TodoTask.EVENTTYPE))) {
                 String todoTask = checkListItem.split("] ")[1];
                 convertedTemporaryFile.add(new TodoTask(todoTask));
-            } else if ((checkListItem.contains("[D]"))) {
+            } else if ((checkListItem.contains(DeadlineTask.EVENTTYPE))) {
                 String deadlineTask = checkListItem.split("] ")[1];
                 String description = deadlineTask.split(" \\(")[0];
                 String by = deadlineTask.split("by: ")[1].split("\\)")[0];
@@ -30,12 +30,12 @@ public class TaskList {
                 } catch (FridayException e) {
                     throw new RuntimeException(e);
                 }
-            } else if ((checkListItem.contains("[E]"))) {
+            } else if ((checkListItem.contains(EventTask.EVENTTYPE))) {
                 String eventTask = checkListItem.split("] ")[1];
                 String description = eventTask.split(" \\(")[0];
-                String schedule = eventTask.split("from: ")[1];
-                String from = schedule.split(" to:")[0];
-                String to = schedule.split("to: ")[1].split("\\)")[0];
+                String schedule = eventTask.split("from:")[1];
+                String from = schedule.split("to:")[0];
+                String to = schedule.split("to:")[1].split("\\)")[0];
                 convertedTemporaryFile.add(new EventTask(description, from, to));
             }
         }
@@ -71,7 +71,10 @@ public class TaskList {
     @SuppressWarnings("unchecked") //SuppressWarnings of adding Task task into the generic ArrayList allTasks
     public static String addToList(Task task) {
         allTasks.add(task);
-        return("Got it. I've added this task:\n" + task.toString() + "\n" + getTaskCount());
+        return("Got it. I've added this task:\n"
+                + task.toString()
+                + "\n"
+                + getTaskCount());
     }
 
     /**
@@ -79,7 +82,9 @@ public class TaskList {
      * @return String with the number of friday.tasks in allTasks.
      */
     public static String getTaskCount() {
-        return ("Now you have " + allTasks.size() + " friday.tasks in the list.");
+        return ("Now you have "
+                + allTasks.size()
+                + " friday.tasks in the list.");
     }
 
     /**
@@ -89,7 +94,8 @@ public class TaskList {
     public static String unmark(int index) {
         Task task = (Task) allTasks.get(index);
         task.setTaskStatus(false);
-        return("OK, I've marked this task as not done yet:\n" + task.toString());
+        return("OK, I've marked this task as not done yet:\n"
+                + task.toString());
     }
 
     /**
@@ -99,7 +105,8 @@ public class TaskList {
     public static String mark(int index) {
         Task task = (Task) allTasks.get(index);
         task.setTaskStatus(true);
-        return("Nice! I've marked this task as done:\n" + task.toString());
+        return("Nice! I've marked this task as done:\n"
+                + task.toString());
     }
 
     /**
@@ -109,6 +116,9 @@ public class TaskList {
     public static String delete(int index) {
         Task task = (Task) allTasks.get(index);
         allTasks.remove(index);
-        return("Noted. I've removed this task:\n" + task.toString() + "\n" + getTaskCount());
+        return("Noted. I've removed this task:\n"
+                + task.toString()
+                + "\n"
+                + getTaskCount());
     }
 }

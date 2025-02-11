@@ -5,6 +5,11 @@ public abstract class Task {
     protected String description;
     protected boolean isDone;
 
+    public static final char OPENBRACKET = '[';
+    public static final char CLOSEBRACKET = ']';
+    public static final String ENDINGBRACKET = ")";
+    public static final char DESCRIPTIONDIVIDER = ' ';
+
     public Task(String description) {
         this.description = description;
         this.isDone = false;
@@ -28,6 +33,10 @@ public abstract class Task {
 
     @Override
     public String toString() {
-        return "[" + this.getStatusIcon() + "] " + this.description;
+        return (OPENBRACKET
+                + this.getStatusIcon()
+                + CLOSEBRACKET
+                + DESCRIPTIONDIVIDER
+                + this.description);
     }
 }
