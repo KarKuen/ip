@@ -34,6 +34,7 @@ public class Parser {
                 }
             }
         }
+        //Happy Path
         String action = fullCommand.split(" ")[0];
         if ((action.compareTo("todo") == 0)
                 || (action.compareTo("deadline") == 0)

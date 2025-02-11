@@ -5,6 +5,10 @@ public class EventTask extends Task {
     protected String from;
     protected String to;
 
+    public static final String EVENTTYPE = String.valueOf(OPENBRACKET + "E" + CLOSEBRACKET);
+    public static final String FROMFORMATSTRING = " (from:";
+    public static final String TOFORMATSTRING = "to:";
+
     public EventTask(String description, String from, String to) {
         super(description);
         this.from = from;
@@ -13,6 +17,12 @@ public class EventTask extends Task {
 
     @Override
     public String toString() {
-        return ("[E]" + super.toString() + " (from:" + from + "to:" + to + ")");
+        return (EVENTTYPE
+                + super.toString()
+                + FROMFORMATSTRING
+                + from
+                + TOFORMATSTRING
+                + to
+                + ENDINGBRACKET);
     }
 }
