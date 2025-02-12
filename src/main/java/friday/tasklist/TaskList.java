@@ -79,6 +79,18 @@ public class TaskList {
         return filteredList;
     }
 
+    public static ArrayList<String> returnPriorityList(String priority) {
+        ArrayList<String> priorityList = new ArrayList<>();
+        for (int i = 0; i < allTasks.size(); i++) {
+            Task task = (Task) allTasks.get(i);
+            String taskPriority = task.getPriority();
+            if (taskPriority.compareTo(priority) == 0) {
+                priorityList.add(allTasks.get(i).toString());
+            }
+        }
+        return priorityList;
+    }
+
     /**
      * Adds a task into allTasks.
      * @param task Task to be added into allTasks.
@@ -125,5 +137,10 @@ public class TaskList {
         Task task = (Task) allTasks.get(index);
         allTasks.remove(index);
         return("Noted. I've removed this task:\n" + task.toString() + "\n" + getTaskCount());
+    }
+
+    public static String prioritise(int index, String priority) {
+        Task task = (Task) allTasks.get(index);
+        return(task.setPriority(priority));
     }
 }

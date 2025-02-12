@@ -7,7 +7,7 @@ public class EventTask extends Task {
 
     public static final String EVENTTYPE = String.valueOf(OPENBRACKET + "E" + CLOSEBRACKET);
     public static final String FROMFORMATSTRING = " (from:";
-    public static final String TOFORMATSTRING = "to:";
+    public static final String TOFORMATSTRING = " to: ";
 
     public EventTask(String description, String from, String to) {
         super(description);

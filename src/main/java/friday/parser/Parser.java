@@ -10,7 +10,7 @@ import java.util.List;
 public class Parser {
     //list of allowable text inputs
     private static List<String> availableActions = Arrays.asList(
-            "list", "mark", "unmark", "bye", "todo", "deadline", "event");
+            "list", "mark", "unmark", "bye", "todo", "deadline", "event", "plist", "prioritise");
     private static List<String> actionsWithDescription = Arrays.asList(
             "mark", "unmark", "todo", "deadline", "event");
 
