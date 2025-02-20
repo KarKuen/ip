@@ -35,13 +35,14 @@ public class Friday {
     }
 
     public String getResponse(String input) {
-        String reply = "default message";
+        String reply;
         try {
             Command c = Parser.parse(input);
             reply = c.execute(tasks, ui, storage);
             isExit = c.isExit();
         } catch (FridayException e) {
             ui.showError(e.getMessage());
+            reply = e.getMessage();
         }
         return "Friday: \n" + reply;
     }

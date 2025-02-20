@@ -27,21 +27,16 @@ public class Parser {
      * @throws FridayException If the user input is not an action within availableActions or if the input in invalid.
      */
     public static Command parse(String fullCommand) throws FridayException {
-        if (fullCommand.split(" ").length <= 1) {
-            String action = fullCommand.split(" ")[0];
-            if (!availableActions.contains(action)) {
-                throw new FridayException("please input a valid action");
-            } else {
-                // check if there exist a description
-                if ((fullCommand.split(" ").length <= 1)
-                        // check if the action requires a description
-                        && (actionsWithDescription.contains(fullCommand.split(" ")[0]))) {
-                    throw new FridayException("please provide a description for your action");
-                }
-            }
-        }
-        // Happy Path
         String action = fullCommand.split(" ")[0];
+        if (!availableActions.contains(action)) {
+            throw new FridayException("please input a valid action");
+        }
+        // check if there exist a description && check if the action requires a description
+        if ((fullCommand.split(" ").length <= 1)
+                && (actionsWithDescription.contains(action))) {
+            throw new FridayException("please provide a description for your action");
+        }
+
         if ((action.compareTo("todo") == 0)
                 || (action.compareTo("deadline") == 0)
                 || (action.compareTo("event") == 0)) {
