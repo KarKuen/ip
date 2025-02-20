@@ -32,14 +32,13 @@ public class Storage {
             File f = new File(filepath);
             if (f.createNewFile()) {
                 throw new FridayException("TaskList not found, creating new TaskList file");
-            } else {
-                ArrayList<String> temporaryFile = new ArrayList<>();
-                Scanner s = new Scanner(f);
-                while (s.hasNext()) {
-                    temporaryFile.add(s.nextLine());
-                }
-                return temporaryFile;
             }
+            ArrayList<String> temporaryFile = new ArrayList<>();
+            Scanner s = new Scanner(f);
+            while (s.hasNext()) {
+                temporaryFile.add(s.nextLine());
+            }
+            return temporaryFile;
         } catch (IOException e) {
             throw new FridayException("an error occured");
         }

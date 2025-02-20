@@ -25,33 +25,11 @@ public class TaskList {
         for (int i = 0; i < temporaryFile.size(); i++) {
             String checkListItem = temporaryFile.get(i);
             if ((checkListItem.contains(TodoTask.EVENTTYPE))) {
-                assert checkListItem.contains("] ") : "Todo task format is incorrect";
-                String todoTask = checkListItem.split("] ")[1];
-                convertedTemporaryFile.add(new TodoTask(todoTask));
+                convertedTemporaryFile = createToDo(checkListItem, convertedTemporaryFile);
             } else if ((checkListItem.contains(DeadlineTask.EVENTTYPE))) {
-                assert checkListItem.contains("] ")
-                        && checkListItem.contains("(by: ") : "Deadline task format is incorrect";
-                String deadlineTask = checkListItem.split("] ")[1];
-                String description = deadlineTask.split(" \\(")[0];
-                String by = deadlineTask.split("by: ")[1].split("\\)")[0];
-                try {
-                    LocalDateTime checkDate = DeadlineTask.createDateFormatted(by);
-                    convertedTemporaryFile.add(new DeadlineTask(description, checkDate));
-                } catch (FridayException e) {
-                    throw new RuntimeException(e);
-                }
+                convertedTemporaryFile = createDeadLine(checkListItem, convertedTemporaryFile);
             } else if ((checkListItem.contains(EventTask.EVENTTYPE))) {
-                assert checkListItem.contains("] ")
-                        && checkListItem.contains("(from: ")
-                        && checkListItem.contains(" to:") : "Event task format is incorrect";
-                String eventTask = checkListItem.split("] ")[1];
-                String description = eventTask.split(" \\(")[0];
-                String schedule = eventTask.split("from:")[1];
-
-                assert schedule.contains(" to:") : "Event schedule format is incorrect";
-                String from = schedule.split(" to:")[0];
-                String to = schedule.split("to: ")[1].split("\\)")[0];
-                convertedTemporaryFile.add(new EventTask(description, from, to));
+                convertedTemporaryFile = createEvent(checkListItem, convertedTemporaryFile);
             }
         }
         this.allTasks = convertedTemporaryFile;
@@ -62,6 +40,61 @@ public class TaskList {
      */
     public TaskList() {
         this.allTasks = new ArrayList<Task>();
+    }
+
+    /**
+     * Add a TodoTask into the TaskList.
+     * @param checkListItem The String in the previously saved file.
+     * @param convertedTemporaryFile The TaskList.
+     * @return The TaskList after adding the TodoTask.
+     */
+    public ArrayList<Task> createToDo(String checkListItem, ArrayList<Task> convertedTemporaryFile) {
+        assert checkListItem.contains("] ") : "Todo task format is incorrect";
+        String todoTask = checkListItem.split("] ")[1];
+        convertedTemporaryFile.add(new TodoTask(todoTask));
+        return convertedTemporaryFile;
+    }
+
+    /**
+     * Add a DeadLineTask into the TaskList.
+     * @param checkListItem The String in the previously saved file.
+     * @param convertedTemporaryFile The TaskList.
+     * @return The TaskList after adding the DeadLineTask.
+     */
+    public ArrayList<Task> createDeadLine(String checkListItem, ArrayList<Task> convertedTemporaryFile) {
+        assert checkListItem.contains("] ")
+                && checkListItem.contains("(by: ") : "Deadline task format is incorrect";
+        String deadlineTask = checkListItem.split("] ")[1];
+        String description = deadlineTask.split(" \\(")[0];
+        String by = deadlineTask.split("by: ")[1].split("\\)")[0];
+        try {
+            LocalDateTime checkDate = DeadlineTask.createDateFormatted(by);
+            convertedTemporaryFile.add(new DeadlineTask(description, checkDate));
+        } catch (FridayException e) {
+            throw new RuntimeException(e);
+        }
+        return convertedTemporaryFile;
+    }
+
+    /**
+     * Add a EventTask into the TaskList.
+     * @param checkListItem The String in the previously saved file.
+     * @param convertedTemporaryFile The TaskList.
+     * @return The TaskList after adding the EventTask.
+     */
+    public ArrayList<Task> createEvent(String checkListItem, ArrayList<Task> convertedTemporaryFile) {
+        assert checkListItem.contains("] ")
+                && checkListItem.contains("(from: ")
+                && checkListItem.contains(" to:") : "Event task format is incorrect";
+        String eventTask = checkListItem.split("] ")[1];
+        String description = eventTask.split(" \\(")[0];
+        String schedule = eventTask.split("from:")[1];
+
+        assert schedule.contains(" to:") : "Event schedule format is incorrect";
+        String from = schedule.split(" to:")[0];
+        String to = schedule.split("to: ")[1].split("\\)")[0];
+        convertedTemporaryFile.add(new EventTask(description, from, to));
+        return convertedTemporaryFile;
     }
 
     /**
@@ -124,7 +157,7 @@ public class TaskList {
      * @return String with the number of friday.tasks in allTasks.
      */
     public static String getTaskCount() {
-        return ("Now you have " + allTasks.size() + " friday.tasks in the list.");
+        return ("Now you have " + allTasks.size() + " tasks in the list.");
     }
 
     /**

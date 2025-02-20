@@ -36,7 +36,6 @@ public class Parser {
                 && (actionsWithDescription.contains(action))) {
             throw new FridayException("please provide a description for your action");
         }
-
         if ((action.compareTo("todo") == 0)
                 || (action.compareTo("deadline") == 0)
                 || (action.compareTo("event") == 0)) {
