@@ -19,7 +19,7 @@ public class ExitCommand extends Command {
         try {
             // save allTasks into TaskList file
             Storage.saveFile(TaskList.returnList());
-            return (ui.bidFarewell());
+            return (Ui.bidFarewell());
         } catch (IOException e) {
             // unable to save allTasks into TaskList file
             throw new FridayException("Error saving files");

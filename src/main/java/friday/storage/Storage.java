@@ -19,7 +19,7 @@ public class Storage {
      * @param filepath The filepath to be loaded.
      */
     public Storage(String filepath) {
-        this.filepath = filepath;
+        Storage.filepath = filepath;
     }
 
     /**

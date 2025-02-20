@@ -12,8 +12,7 @@ import friday.ui.Ui;
  */
 public class Friday {
     // relative filepath
-    private static String home = System.getProperty("user.home");
-    private static String filePath = String.valueOf(java.nio.file.Paths.get(home, "Desktop", "taskList"));
+    private static String filePath = "tasklist.txt";
 
     private Storage storage;
     private TaskList tasks;
