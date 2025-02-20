@@ -165,7 +165,7 @@ public class TaskList {
      * @param index Index of the checkbox index to be unmarked.
      * @return The chatbot update message to indicate successfully unmarking the task.
      */
-    public static String unmark(int index) throws FridayException{
+    public static String unmark(int index) throws FridayException {
         Task task = getTask(index);
         task.setTaskStatus(false);
         return ("OK, I've marked this task as not done yet:\n" + task.toString());
@@ -188,12 +188,11 @@ public class TaskList {
      * @return The task if the given index is an acceptable one.
      * @throws FridayException The error if the index given is not within the range for allTasks.
      */
-    public static Task getTask(int index) throws FridayException{
+    public static Task getTask(int index) throws FridayException {
         Task task;
         try {
             task = (Task) allTasks.get(index);
-        }
-        catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             throw new FridayException("please input an acceptable integer");
         }
         return task;
