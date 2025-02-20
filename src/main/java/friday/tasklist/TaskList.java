@@ -103,8 +103,8 @@ public class TaskList {
      */
     public static ArrayList<String> returnList() {
         ArrayList<String> convertedList = new ArrayList<>();
-        for (int i = 0; i < allTasks.size(); i++) {
-            convertedList.add(allTasks.get(i).toString());
+        for (Object allTask : allTasks) {
+            convertedList.add(allTask.toString());
         }
         return convertedList;
     }

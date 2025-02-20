@@ -23,12 +23,10 @@ public class BasicCommand extends Command {
             int index = Integer.parseInt(this.getDescription()) - 1;
             return (TaskList.mark(index));
         } else if (action.compareTo("list") == 0) {
-            String listString = String.join("\n", TaskList.returnList());
-            return listString;
+            return String.join("\n", TaskList.returnList());
         } else if (action.compareTo("find") == 0) {
             String toSearch = this.getDescription();
-            String listString = String.join("\n", TaskList.returnFilteredList(toSearch));
-            return listString;
+            return String.join("\n", TaskList.returnFilteredList(toSearch));
         } else if (action.compareTo("prioritise") == 0) {
             String[] description = this.getDescription().split(" ");
             assert description.length == 2 : "follow the format: prioritise taskIndex priorityLevel";
@@ -37,8 +35,7 @@ public class BasicCommand extends Command {
             return (TaskList.prioritise(index, priority));
         } else if (action.equals("plist")) {
             assert this.getDescription() != null : "please include the level of priority";
-            String listString = String.join("\n", TaskList.returnPriorityList(this.getDescription()));
-            return listString;
+            return String.join("\n", TaskList.returnPriorityList(this.getDescription()));
         }
         return ("please input an available action");
     }

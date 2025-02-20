@@ -1,11 +1,13 @@
 package friday.parser;
-import  friday.command.Command;
-import  friday.command.AddCommand;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import friday.fridayexceptions.FridayException;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import friday.command.AddCommand;
+import friday.command.Command;
+import friday.fridayexceptions.FridayException;
 
 public class ParserTest {
     @Test

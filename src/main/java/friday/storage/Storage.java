@@ -49,10 +49,10 @@ public class Storage {
      * @param allTasks The tasks to be saved into the TaskList file.
      * @throws IOException When the tasks cannot be written into the TaskList file.
      */
-    public static void saveFile(ArrayList allTasks) throws IOException {
+    public static void saveFile(ArrayList<String> allTasks) throws IOException {
         FileWriter fw = new FileWriter(filepath);
-        for (int i = 0; i < allTasks.size(); i++) {
-            fw.write(allTasks.get(i).toString() + "\n");
+        for (String allTask : allTasks) {
+            fw.write(allTask + "\n");
         }
         fw.close();
     }
