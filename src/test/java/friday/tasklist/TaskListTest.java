@@ -1,11 +1,12 @@
 package friday.tasklist;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Test;
+
 public class TaskListTest {
-    TaskList test1 = new TaskList();
-    String test1count = test1.getTaskCount();
+    private TaskList test1 = new TaskList();
+    private String test1count = test1.getTaskCount();
 
     @Test
     public void taskCountTest() {

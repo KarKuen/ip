@@ -1,17 +1,23 @@
 package friday.tasks;
 
-//an abstract task class.
+/**
+ * The Task class represents a task with a description and status.
+ */
 public abstract class Task {
-    protected String description;
-    protected boolean isDone;
-
-    public String priority;
-
     public static final char OPENBRACKET = '[';
     public static final char CLOSEBRACKET = ']';
     public static final String ENDINGBRACKET = ")";
     public static final char DESCRIPTIONDIVIDER = ' ';
 
+    protected String description;
+    protected boolean isDone;
+
+    private String priority;
+
+    /**
+     * Initialises a newly created Task object with a description, completion status, and priority ranking.
+     * @param description The description of the task.
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
@@ -46,9 +52,9 @@ public abstract class Task {
         } else if (priority.compareTo("low") == 0) {
             this.priority = "low";
         } else {
-            return("please input either high/medium/low priority");
+            return ("please input either high/medium/low priority");
         }
-        return("Prioritised " + this.toString() + " as " + priority);
+        return ("Prioritised " + this.toString() + " as " + priority);
     }
 
     @Override

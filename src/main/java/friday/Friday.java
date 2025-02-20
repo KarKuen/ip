@@ -2,11 +2,14 @@ package friday;
 
 import friday.command.Command;
 import friday.fridayexceptions.FridayException;
-import friday.ui.Ui;
+import friday.parser.Parser;
 import friday.storage.Storage;
 import friday.tasklist.TaskList;
-import friday.parser.Parser;
+import friday.ui.Ui;
 
+/**
+ * The Friday class sets up the chatbot's Ui, Storage, TaskList, and Parser.
+ */
 public class Friday {
     //relative filepath
     private static String home = System.getProperty("user.home");
@@ -17,6 +20,9 @@ public class Friday {
     private Ui ui;
     private boolean isExit;
 
+    /**
+     * Initialises a newly created Friday object.
+     */
     public Friday() {
         ui = new Ui();
         storage = new Storage(filePath);

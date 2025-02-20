@@ -1,14 +1,21 @@
 package friday.tasks;
 
-//an event task with a start and end date, indicated by the "from" and "to" variables.
+/**
+ * The EventTask class represents a task with a time frame.
+ */
 public class EventTask extends Task {
-    protected String from;
-    protected String to;
-
     public static final String EVENTTYPE = String.valueOf(OPENBRACKET + "E" + CLOSEBRACKET);
     public static final String FROMFORMATSTRING = " (from:";
     public static final String TOFORMATSTRING = " to: ";
 
+    protected String from;
+    protected String to;
+    /**
+     * Initialises a newly created EventTask object with a description, starting time period, and ending time period.
+     * @param description The description of the task.
+     * @param from The starting time period of the task.
+     * @param to The ending time period of the task.
+     */
     public EventTask(String description, String from, String to) {
         super(description);
         this.from = from;

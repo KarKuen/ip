@@ -1,6 +1,8 @@
 package friday.tasks;
 
-//a todo task.
+/**
+ * The TodoTask class represents a task that needs to be done.
+ */
 public class TodoTask extends Task {
     public static final String EVENTTYPE = String.valueOf(OPENBRACKET + "T" + CLOSEBRACKET);
 

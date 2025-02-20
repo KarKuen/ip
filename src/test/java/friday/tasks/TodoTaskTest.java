@@ -1,10 +1,11 @@
 package friday.tasks;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Test;
+
 public class TodoTaskTest {
-    TodoTask test2 = new TodoTask("test");
+    private TodoTask test2 = new TodoTask("test");
 
     @Test
     public void todoTaskTest() {

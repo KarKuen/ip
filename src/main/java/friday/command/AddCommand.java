@@ -1,4 +1,5 @@
 package friday.command;
+import java.time.LocalDateTime;
 
 import friday.fridayexceptions.FridayException;
 import friday.storage.Storage;
@@ -8,8 +9,9 @@ import friday.tasks.EventTask;
 import friday.tasks.TodoTask;
 import friday.ui.Ui;
 
-import java.time.LocalDateTime;
-
+/**
+ * The AddCommand class represents the user command to add new tasks into the TaskList.
+ */
 public class AddCommand extends Command {
     public AddCommand(String fullCommand) {
         super(fullCommand);
@@ -37,6 +39,6 @@ public class AddCommand extends Command {
             String[] period = activity[1].split("/to", 2);
             return (TaskList.addToList(new EventTask(activity[0], period[0], period[1])));
         }
-        return("please input one of available actions");
+        return ("please input one of available actions");
     }
 }

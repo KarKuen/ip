@@ -3,17 +3,19 @@ package friday.storage;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import friday.fridayexceptions.FridayException;
 
+/**
+ * The Storage class helps load and save the file.
+ */
 public class Storage {
     private static String filepath;
 
     /**
-     * Loading tasks from the file and saving tasks in the file
+     * Loads tasks from the file and saving tasks in the file
      * @param filepath The filepath to be loaded.
      */
     public Storage(String filepath) {
@@ -48,7 +50,7 @@ public class Storage {
      * @param allTasks The tasks to be saved into the TaskList file.
      * @throws IOException When the tasks cannot be written into the TaskList file.
      */
-    public static void saveFile(ArrayList allTasks) throws IOException{
+    public static void saveFile(ArrayList allTasks) throws IOException {
         FileWriter fw = new FileWriter(filepath);
         for (int i = 0; i < allTasks.size(); i++) {
             fw.write(allTasks.get(i).toString() + "\n");

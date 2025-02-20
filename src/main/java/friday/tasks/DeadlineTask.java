@@ -1,19 +1,24 @@
 package friday.tasks;
-
-import friday.fridayexceptions.FridayException;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
 
-//a deadline task with a deadline, indicated by the "by" variable.
-public class DeadlineTask extends Task {
-    protected LocalDateTime by;
+import friday.fridayexceptions.FridayException;
 
+/**
+ * The DeadLineTask class represents a task that must be completed by a certain date and time.
+ */
+public class DeadlineTask extends Task {
     public static final String EVENTTYPE = String.valueOf(OPENBRACKET + "D" + CLOSEBRACKET);
     public static final String BYFORMATSTRING = " (by: ";
 
+    protected LocalDateTime by;
+    /**
+     * Initialises a newly created DeadLineTask object with a description and deadline.
+     * @param description The description of the task.
+     * @param by The deadline of the task.
+     */
     public DeadlineTask(String description, LocalDateTime by) {
         super(description);
         this.by = by;

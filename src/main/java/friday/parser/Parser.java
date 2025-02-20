@@ -1,12 +1,18 @@
 package friday.parser;
 
-import friday.command.*;
-import friday.fridayexceptions.FridayException;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import friday.command.AddCommand;
+import friday.command.BasicCommand;
+import friday.command.Command;
+import friday.command.DeleteCommand;
+import friday.command.ExitCommand;
+import friday.fridayexceptions.FridayException;
+
+/**
+ * The Parser class interprets user input and performs the necessary actions.
+ */
 public class Parser {
     //list of allowable text inputs
     private static List<String> availableActions = Arrays.asList(
@@ -21,15 +27,15 @@ public class Parser {
      * @throws FridayException If the user input is not an action within availableActions or if the input in invalid.
      */
     public static Command parse(String fullCommand) throws FridayException {
-        if(fullCommand.split(" ").length <= 1) {
+        if (fullCommand.split(" ").length <= 1) {
             String action = fullCommand.split(" ")[0];
-            if(!availableActions.contains(action)) {
+            if (!availableActions.contains(action)) {
                 throw new FridayException("please input a valid action");
             } else {
                 //check if there exist a description
-                if ((fullCommand.split(" ").length <= 1) &&
+                if ((fullCommand.split(" ").length <= 1)
                         //check if the action requires a description
-                        (actionsWithDescription.contains(fullCommand.split(" ")[0]))) {
+                        && (actionsWithDescription.contains(fullCommand.split(" ")[0]))) {
                     throw new FridayException("please provide a description for your action");
                 }
             }
