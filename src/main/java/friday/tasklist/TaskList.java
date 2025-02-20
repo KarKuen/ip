@@ -101,7 +101,7 @@ public class TaskList {
      * Returns the tasks stored inside the TaskList.
      * @return The formatted strings of the tasks inside the TaskList.
      */
-    public static ArrayList returnList() {
+    public static ArrayList<String> returnList() {
         ArrayList<String> convertedList = new ArrayList<>();
         for (int i = 0; i < allTasks.size(); i++) {
             convertedList.add(allTasks.get(i).toString());
