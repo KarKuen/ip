@@ -215,8 +215,13 @@ public class TaskList {
      * @param priority The priority to be given to the specified task.
      * @return The chatbot update message to indicate successfully prioritising the task.
      */
-    public static String prioritise(int index, String priority) {
-        Task task = (Task) allTasks.get(index);
+    public static String prioritise(int index, String priority) throws FridayException {
+        Task task;
+        try {
+            task = (Task) allTasks.get(index);
+        } catch (IndexOutOfBoundsException e) {
+            throw new FridayException("Please input an acceptable index");
+        }
         return (task.setPriority(priority));
     }
 }
