@@ -13,7 +13,7 @@ import friday.tasks.TodoTask;
  * The TaskList class represents the list of tasks.
  */
 public class TaskList {
-    //TaskList that stores all friday.tasks
+    // TaskList that stores all friday.tasks
     private static ArrayList allTasks;
 
     /**
@@ -113,7 +113,7 @@ public class TaskList {
      * @param task Task to be added into allTasks.
      * @return The chatbot update message to indicate successfully adding to the list.
      */
-    @SuppressWarnings("unchecked") //SuppressWarnings of adding Task task into the generic ArrayList allTasks
+    @SuppressWarnings("unchecked") // SuppressWarnings of adding Task task into the generic ArrayList allTasks
     public static String addToList(Task task) {
         allTasks.add(task);
         return ("Got it. I've added this task:\n" + task.toString() + "\n" + getTaskCount());

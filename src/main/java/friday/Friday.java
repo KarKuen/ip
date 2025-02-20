@@ -11,7 +11,7 @@ import friday.ui.Ui;
  * The Friday class sets up the chatbot's Ui, Storage, TaskList, and Parser.
  */
 public class Friday {
-    //relative filepath
+    // relative filepath
     private static String home = System.getProperty("user.home");
     private static String filePath = String.valueOf(java.nio.file.Paths.get(home, "Desktop", "taskList"));
 

@@ -17,11 +17,11 @@ public class ExitCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws FridayException {
         try {
-            //save allTasks into TaskList file
+            // save allTasks into TaskList file
             Storage.saveFile(TaskList.returnList());
             return (ui.bidFarewell());
         } catch (IOException e) {
-            //unable to save allTasks into TaskList file
+            // unable to save allTasks into TaskList file
             System.out.println("Error saving TaskList");
         } finally {
             setIsExit(true);
