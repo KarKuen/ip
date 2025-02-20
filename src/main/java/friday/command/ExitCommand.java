@@ -22,10 +22,7 @@ public class ExitCommand extends Command {
             return (ui.bidFarewell());
         } catch (IOException e) {
             // unable to save allTasks into TaskList file
-            System.out.println("Error saving TaskList");
-        } finally {
-            setIsExit(true);
+            throw new FridayException("Error saving files");
         }
-        return ("");
     }
 }

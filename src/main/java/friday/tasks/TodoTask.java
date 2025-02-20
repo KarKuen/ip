@@ -4,7 +4,7 @@ package friday.tasks;
  * The TodoTask class represents a task that needs to be done.
  */
 public class TodoTask extends Task {
-    public static final String EVENTTYPE = String.valueOf(OPENBRACKET + "T" + CLOSEBRACKET);
+    public static final String EVENT_TYPE = String.valueOf(OPEN_BRACKET + "T" + CLOSE_BRACKET);
 
     public TodoTask(String description) {
         super(description);
@@ -12,7 +12,7 @@ public class TodoTask extends Task {
 
     @Override
     public String toString() {
-        return (EVENTTYPE
+        return (EVENT_TYPE
                 + super.toString());
     }
 }

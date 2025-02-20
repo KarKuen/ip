@@ -24,11 +24,11 @@ public class TaskList {
         ArrayList<Task> convertedTemporaryFile = new ArrayList<>();
         for (int i = 0; i < temporaryFile.size(); i++) {
             String checkListItem = temporaryFile.get(i);
-            if ((checkListItem.contains(TodoTask.EVENTTYPE))) {
+            if ((checkListItem.contains(TodoTask.EVENT_TYPE))) {
                 convertedTemporaryFile = createToDo(checkListItem, convertedTemporaryFile);
-            } else if ((checkListItem.contains(DeadlineTask.EVENTTYPE))) {
+            } else if ((checkListItem.contains(DeadlineTask.EVENT_TYPE))) {
                 convertedTemporaryFile = createDeadLine(checkListItem, convertedTemporaryFile);
-            } else if ((checkListItem.contains(EventTask.EVENTTYPE))) {
+            } else if ((checkListItem.contains(EventTask.EVENT_TYPE))) {
                 convertedTemporaryFile = createEvent(checkListItem, convertedTemporaryFile);
             }
         }
@@ -165,8 +165,8 @@ public class TaskList {
      * @param index Index of the checkbox index to be unmarked.
      * @return The chatbot update message to indicate successfully unmarking the task.
      */
-    public static String unmark(int index) {
-        Task task = (Task) allTasks.get(index);
+    public static String unmark(int index) throws FridayException{
+        Task task = getTask(index);
         task.setTaskStatus(false);
         return ("OK, I've marked this task as not done yet:\n" + task.toString());
     }
@@ -176,10 +176,27 @@ public class TaskList {
      * @param index Index of the checkbox index to be marked.
      * @return The chatbot update message to indicate successfully marking the task.
      */
-    public static String mark(int index) {
-        Task task = (Task) allTasks.get(index);
+    public static String mark(int index) throws FridayException {
+        Task task = getTask(index);
         task.setTaskStatus(true);
         return ("Nice! I've marked this task as done:\n" + task.toString());
+    }
+
+    /**
+     * Retrieves the task from allTasks if the index given is within the bounds.
+     * @param index The index of the task to retrieve.
+     * @return The task if the given index is an acceptable one.
+     * @throws FridayException The error if the index given is not within the range for allTasks.
+     */
+    public static Task getTask(int index) throws FridayException{
+        Task task;
+        try {
+            task = (Task) allTasks.get(index);
+        }
+        catch (IndexOutOfBoundsException e) {
+            throw new FridayException("please input an acceptable integer");
+        }
+        return task;
     }
 
     /**
@@ -187,8 +204,8 @@ public class TaskList {
      * @param index Index of the task to be deleted in allTasks.
      * @return The chatbot update message to indicate successfully deleting the task.
      */
-    public static String delete(int index) {
-        Task task = (Task) allTasks.get(index);
+    public static String delete(int index) throws FridayException {
+        Task task = getTask(index);
         allTasks.remove(index);
         return ("Noted. I've removed this task:\n" + task.toString() + "\n" + getTaskCount());
     }

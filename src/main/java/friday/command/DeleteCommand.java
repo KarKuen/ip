@@ -15,7 +15,6 @@ public class DeleteCommand extends Command {
 
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws FridayException {
-        int index = Integer.parseInt(this.getDescription()) - 1;
-        return (TaskList.delete(index));
+        return (TaskList.delete(BasicCommand.checkInt(this)));
     }
 }

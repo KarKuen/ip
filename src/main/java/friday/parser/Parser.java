@@ -16,9 +16,9 @@ import friday.fridayexceptions.FridayException;
 public class Parser {
     // list of allowable text inputs
     private static final List<String> availableActions = Arrays.asList(
-            "list", "mark", "unmark", "delete", "bye", "todo", "deadline", "event", "plist", "prioritise");
+            "list", "mark", "unmark", "delete", "bye", "todo", "deadline", "event", "plist", "prioritise", "find");
     private static final List<String> actionsWithDescription = Arrays.asList(
-            "mark", "unmark", "todo", "deadline", "event");
+            "mark", "unmark", "todo", "deadline", "event", "find", "delete");
 
     /**
      * Checks if the user input is a valid action within availableActions and actionsWithDescription,

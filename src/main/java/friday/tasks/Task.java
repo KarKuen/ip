@@ -4,10 +4,10 @@ package friday.tasks;
  * The Task class represents a task with a description and status.
  */
 public abstract class Task {
-    public static final char OPENBRACKET = '[';
-    public static final char CLOSEBRACKET = ']';
-    public static final String ENDINGBRACKET = ")";
-    public static final char DESCRIPTIONDIVIDER = ' ';
+    public static final char OPEN_BRACKET = '[';
+    public static final char CLOSE_BRACKET = ']';
+    public static final String ENDING_BRACKET = ")";
+    public static final char DESCRIPTION_DIVIDER = ' ';
 
     protected String description;
     protected boolean isDone;
@@ -59,10 +59,10 @@ public abstract class Task {
 
     @Override
     public String toString() {
-        return (OPENBRACKET
+        return (OPEN_BRACKET
                 + this.getStatusIcon()
-                + CLOSEBRACKET
-                + DESCRIPTIONDIVIDER
+                + CLOSE_BRACKET
+                + DESCRIPTION_DIVIDER
                 + this.description);
     }
 }

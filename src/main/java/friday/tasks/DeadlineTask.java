@@ -10,8 +10,8 @@ import friday.fridayexceptions.FridayException;
  * The DeadLineTask class represents a task that must be completed by a certain date and time.
  */
 public class DeadlineTask extends Task {
-    public static final String EVENTTYPE = String.valueOf(OPENBRACKET + "D" + CLOSEBRACKET);
-    public static final String BYFORMATSTRING = " (by: ";
+    public static final String EVENT_TYPE = String.valueOf(OPEN_BRACKET + "D" + CLOSE_BRACKET);
+    public static final String BY_FORMAT_STRING = " (by: ";
 
     protected LocalDateTime by;
     /**
@@ -56,10 +56,10 @@ public class DeadlineTask extends Task {
      */
     @Override
     public String toString() {
-        return (EVENTTYPE
+        return (EVENT_TYPE
                 + super.toString()
-                + BYFORMATSTRING
+                + BY_FORMAT_STRING
                 + formatBy(by)
-                + ENDINGBRACKET);
+                + ENDING_BRACKET);
     }
 }

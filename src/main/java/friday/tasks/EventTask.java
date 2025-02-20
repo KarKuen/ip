@@ -4,9 +4,9 @@ package friday.tasks;
  * The EventTask class represents a task with a time frame.
  */
 public class EventTask extends Task {
-    public static final String EVENTTYPE = String.valueOf(OPENBRACKET + "E" + CLOSEBRACKET);
-    public static final String FROMFORMATSTRING = " (from:";
-    public static final String TOFORMATSTRING = " to: ";
+    public static final String EVENT_TYPE = String.valueOf(OPEN_BRACKET + "E" + CLOSE_BRACKET);
+    public static final String FROM_FORMAT_STRING = " (from:";
+    public static final String TO_FORMAT_STRING = " to: ";
 
     protected String from;
     protected String to;
@@ -24,12 +24,12 @@ public class EventTask extends Task {
 
     @Override
     public String toString() {
-        return (EVENTTYPE
+        return (EVENT_TYPE
                 + super.toString()
-                + FROMFORMATSTRING
+                + FROM_FORMAT_STRING
                 + from
-                + TOFORMATSTRING
+                + TO_FORMAT_STRING
                 + to
-                + ENDINGBRACKET);
+                + ENDING_BRACKET);
     }
 }

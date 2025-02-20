@@ -17,11 +17,9 @@ public class BasicCommand extends Command {
     public String execute(TaskList tasks, Ui ui, Storage storage) throws FridayException {
         String action = this.getAction();
         if (action.compareTo("unmark") == 0) {
-            int index = Integer.parseInt(this.getDescription()) - 1;
-            return (TaskList.unmark(index));
+            return (TaskList.unmark(checkInt(this)));
         } else if (action.compareTo("mark") == 0) {
-            int index = Integer.parseInt(this.getDescription()) - 1;
-            return (TaskList.mark(index));
+            return (TaskList.mark(checkInt(this)));
         } else if (action.compareTo("list") == 0) {
             return String.join("\n", TaskList.returnList());
         } else if (action.compareTo("find") == 0) {
@@ -38,5 +36,20 @@ public class BasicCommand extends Command {
             return String.join("\n", TaskList.returnPriorityList(this.getDescription()));
         }
         return ("please input an available action");
+    }
+
+    /**
+     * Checks if the input given is an integer.
+     * @return The index if it is an integer.
+     * @throws FridayException The exception if the user did not input an integer.
+     */
+    public static Integer checkInt(Command command) throws FridayException {
+        int index;
+        try {
+            index = Integer.parseInt(command.getDescription()) - 1;
+        } catch (NumberFormatException e) {
+            throw new FridayException("please input an integer");
+        }
+        return index;
     }
 }
