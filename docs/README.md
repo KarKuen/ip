@@ -4,6 +4,14 @@
 
 Friday is your personal AI butler who helps you take note of all your upcoming tasks.
 
+However, there are some requirements you have to follow:
+1. Follow the Java 17 Installation Guide
+   1. for [Mac Users](https://se-education.org/guides/tutorials/javaInstallationMac.html)
+   2. for [Linux Users](https://se-education.org/guides/tutorials/javaInstallationLinux.html)
+   3. for [Windows Users](https://se-education.org/guides/tutorials/javaInstallationWindows.html)
+4. Download the Friday JAR file
+5. run `java -jar friday.jar`
+
 ## Adding Todo Tasks
 > format: **todo** ***description***
 
