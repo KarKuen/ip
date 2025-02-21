@@ -9,7 +9,7 @@ However, there are some requirements you have to follow:
    1. for [Mac Users](https://se-education.org/guides/tutorials/javaInstallationMac.html)
    2. for [Linux Users](https://se-education.org/guides/tutorials/javaInstallationLinux.html)
    3. for [Windows Users](https://se-education.org/guides/tutorials/javaInstallationWindows.html)
-4. Download the Friday JAR file
+4. Download the Friday [JAR](https://github.com/KarKuen/ip/releases/tag/A-Release) file
 5. run `java -jar friday.jar`
 
 ## Adding Todo Tasks
